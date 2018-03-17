@@ -1,0 +1,20 @@
+@import "../valo/valo.scss";
+
+@mixin mytheme {
+
+  	@include valo;
+
+	/* An actual theme rule */
+	.authScreenDescriptionBackColor {
+		background-color:#151922;
+	}
+
+	.authScreenSignInPartBackColor {
+		background-color:#0097DE;
+	}
+
+	.authScreenDescriptionTextColor {
+	    color:#FFFFFF;
+	}
+
+}
