@@ -1,5 +1,6 @@
 package ru.dmitry.selection_committee.gui;
 
+import com.vaadin.ui.Component;
 import ru.dmitry.selection_committee.gui.screens.Screen;
 
 import javax.validation.constraints.NotNull;
@@ -8,13 +9,13 @@ import java.util.HashMap;
 public class Navigator {
 
     public interface NavigationCallback {
-        void onScreenOpenListener(Screen screen);
+        void onScreenOpenListener(Component screen);
         void onBackPressed();
     }
 
     private long deep = 0;
 
-    private HashMap<Long, Screen> screens;
+    private HashMap<Long, Component> screens;
 
     private NavigationCallback navigationCallback;
 
@@ -23,10 +24,9 @@ public class Navigator {
         screens = new HashMap<>();
     }
 
-    public void openScreen(Screen screen){
+    public void openScreen(Component screen){
         throwNullNavigatorExceptionIfNecessary();
         ++deep;
-        screen.setScreenDeep(deep);
         screens.put(deep, screen);
         navigationCallback.onScreenOpenListener(screen);
     }

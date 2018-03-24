@@ -1,47 +1,6 @@
-@import "projecttheme.scss";
+@import "authorizationscreenstyle.scss";
 
-.authScreenDescriptionBackColor {
-	background-color:#151922;
-}
+@include authorizationscreenstyle;
 
-.authScreenSignInPartBackColor {
-	background-color:#0097DE;
-}
 
-.authScreenDescriptionTextColor {
-    color:#FFFFFF;
-}
 
-#root {
-	height: 100%;
-	width: 100%;
-  	position:relative
-}
-
-#content_description {
-	height: 100%;
-	width: 60%;
-    position: absolute; 
-    z-index: 1;
-    background-color:#151922;
-    display: table;
-}
-
-#description {
-	display: table-cell;
-    vertical-align: middle;
-}
-
-#text {
-	margin-left: auto;
-    margin-right: auto;
-}
-
-#content_sign_in {
-	height: 100%;
-	width: 40%;
-	left: 60%;
-    position: absolute; 
-    z-index: 1;
-    background-color:#0097DE;
-}

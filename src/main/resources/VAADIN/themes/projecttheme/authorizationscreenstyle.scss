@@ -1,0 +1,136 @@
+$v-focus-style: none;
+@import "../valo/valo.scss";
+
+@mixin authorizationscreenstyle {
+
+	@include valo;
+
+	li{
+		display: block;
+    	list-style-type: disc;
+    	-webkit-margin-before: 1em;
+    	-webkit-margin-after: 1em;
+    	-webkit-margin-start: 0px;
+    	-webkit-margin-end: 0px;
+    	-webkit-padding-start: 0px;
+	}
+
+	.v-button_registration {
+		height: 50px;
+		border: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+		background: #0097DE;
+	}
+
+	.v-button-caption {
+		font-size: 16px;
+    	font-weight: bold;
+    	color: #FFFFFF;
+	}
+
+	.v-label-welcome {
+		white-space: pre-wrap;
+    	word-wrap: break-word;
+		min-height: 60px;
+		font-size: 48px;
+		font-weight: medium;
+		color: #FFFFFF;
+	}
+
+	.v-label-introduce {
+		white-space: pre-wrap;
+    	word-wrap: break-word;
+		min-height: 100px;
+		font-size: 36px;
+		font-weight: medium;
+		color: #FFFFFF;
+	}	
+
+	.v-label-observe {
+		white-space: pre-wrap;
+    	word-wrap: break-word;
+		min-height: 60px;
+		font-size: 18px;
+		font-weight: medium;
+		color: #FFFFFF;
+	}	
+
+	.v-label-control {
+		white-space: pre-wrap;
+    	word-wrap: break-word;
+		min-height: 100px;
+		font-size: 18px;
+		font-weight: medium;
+		color: #FFFFFF;
+	}
+
+  	#root_layout {
+		height: 100%;
+		width: 100%;
+	  	position:relative
+	}	
+
+	#content_description_layout {
+		height: 100%;
+		width: 60%;
+	    position: absolute; 
+	    z-index: 1;
+	    background-color:#151922;
+	    display: table;
+	}
+
+	#description_layout {
+		max-width: 100px;
+		display: table-cell;
+	    vertical-align: middle;
+	}
+
+	#text_layout { 
+		margin-left: auto;
+	    margin-right: auto;
+	}
+
+	#content_sign_in_layout {
+		height: 100%;
+		width: 40%;
+		left: 60%;
+	    position: absolute; 
+	    z-index: 1;
+	    background-color:#0097DE;
+	    display: table;
+	}
+
+	#auth_layout {
+		display: table-cell;
+	    vertical-align: middle;
+	}
+
+	#items_layout { 
+		margin-left: auto;
+	    margin-right: auto;
+	}
+
+	.v-label-sign_in {
+		white-space: pre-wrap;
+    	word-wrap: break-word;
+		font-size: 28px;
+		font-weight: medium;
+		color: #FFFFFF;
+		padding-bottom: 20px;
+	}	
+
+	.v-button_auth {
+		height: 50px;
+		border: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+		background: #FFFFFF;
+		padding: 0 30px;
+	}
+
+	.v-captionwrapper{
+		padding-bottom: 20px;
+	}
+
+}

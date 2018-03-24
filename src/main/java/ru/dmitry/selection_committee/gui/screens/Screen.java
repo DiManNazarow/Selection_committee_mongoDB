@@ -10,17 +10,11 @@ import java.util.List;
 
 public abstract class Screen extends AbstractOrderedLayout {
 
-    private long screenDeep;
-
     private Navigator navigator;
 
     public Screen(Navigator navigator){
         this.navigator = navigator;
         addComponents(getComponents());
-    }
-
-    public void setScreenDeep(long screenDeep) {
-        this.screenDeep = screenDeep;
     }
 
     private Component[] getComponents(){

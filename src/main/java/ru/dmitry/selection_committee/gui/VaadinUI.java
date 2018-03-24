@@ -1,14 +1,11 @@
 package ru.dmitry.selection_committee.gui;
 
 import com.vaadin.annotations.Theme;
-import com.vaadin.annotations.Widgetset;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Notification;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.UI;
-import ru.dmitry.selection_committee.gui.screens.Screen;
 import ru.dmitry.selection_committee.gui.screens.auth.AuthorizationScreen;
 
 @SpringUI
@@ -19,18 +16,17 @@ public class VaadinUI extends UI implements Navigator.NavigationCallback {
 
     public VaadinUI(){
         super();
-        //navigator = new Navigator(this);
+        navigator = new Navigator(this);
     }
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         AuthorizationScreen authorizationScreen = new AuthorizationScreen();
-        setContent(authorizationScreen);
-        //navigator.openScreen(authorizationScreen);
+        navigator.openScreen(authorizationScreen);
     }
 
     @Override
-    public void onScreenOpenListener(Screen screen) {
+    public void onScreenOpenListener(Component screen) {
         setContent(screen);
     }
 
