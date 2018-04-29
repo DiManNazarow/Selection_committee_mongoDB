@@ -1,7 +1,6 @@
 package ru.dmitry.selection_committee.gui;
 
 import com.vaadin.ui.Component;
-import ru.dmitry.selection_committee.gui.screens.Screen;
 
 import javax.validation.constraints.NotNull;
 import java.util.HashMap;

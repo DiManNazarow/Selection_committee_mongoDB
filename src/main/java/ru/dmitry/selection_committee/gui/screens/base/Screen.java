@@ -1,4 +1,4 @@
-package ru.dmitry.selection_committee.gui.screens;
+package ru.dmitry.selection_committee.gui.screens.base;
 
 import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.Component;

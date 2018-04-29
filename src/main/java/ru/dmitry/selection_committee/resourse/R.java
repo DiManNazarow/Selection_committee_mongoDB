@@ -14,6 +14,15 @@ public class R {
         public static final String PASSWORD = "Пароль";
         public static final String AUTH = "<font color=\"#0097DE\">ВОЙТИ</font>";
 
+        public static class Errors {
+            public static final String EMPTY_FIELD = "Поле не заполнено";
+            public static final String AUTH_ERROR = "Введенный логин или пароль неверны";
+        }
+
+    }
+
+    public static class Colors{
+        public static final String RED = "#EB5635";
     }
 
 }

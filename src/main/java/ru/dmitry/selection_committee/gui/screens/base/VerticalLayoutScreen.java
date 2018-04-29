@@ -1,8 +1,9 @@
-package ru.dmitry.selection_committee.gui.screens;
+package ru.dmitry.selection_committee.gui.screens.base;
 
 import com.vaadin.shared.ui.orderedlayout.VerticalLayoutState;
 import com.vaadin.ui.Component;
 import ru.dmitry.selection_committee.gui.Navigator;
+import ru.dmitry.selection_committee.gui.screens.base.Screen;
 
 import java.util.List;
 

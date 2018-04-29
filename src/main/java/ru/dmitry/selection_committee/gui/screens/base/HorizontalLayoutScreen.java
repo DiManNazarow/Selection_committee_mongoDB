@@ -1,4 +1,4 @@
-package ru.dmitry.selection_committee.gui.screens;
+package ru.dmitry.selection_committee.gui.screens.base;
 
 import com.vaadin.shared.ui.orderedlayout.HorizontalLayoutState;
 import com.vaadin.ui.Component;
