@@ -1,6 +1,5 @@
 package ru.dmitry.selection_committee.server.services.impl;
 
-import com.sun.istack.internal.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.dmitry.selection_committee.server.models.User;
 import ru.dmitry.selection_committee.server.repositories.UserRepository;
@@ -15,7 +14,6 @@ public class UserServicesImpl implements UserServices {
     private UserRepository userRepository;
 
     @Override
-    @Nullable
     public User findUser(String searchValue, String password) {
         if (!AppTextUtils.isTextEmpty(searchValue) && !AppTextUtils.isTextEmpty(password)){
             if (searchValue.contains(EMAIL_CHAR)){

@@ -1,7 +1,5 @@
 package ru.dmitry.selection_committee.server.models;
 
-import com.sun.istack.internal.Nullable;
-
 public enum  Role {
 
     ENROLLE(1), ADMIN(0);
@@ -16,7 +14,6 @@ public enum  Role {
         return role;
     }
 
-    @Nullable
     public static Role getByType(int type){
         switch (type){
             case 1: return ENROLLE;
