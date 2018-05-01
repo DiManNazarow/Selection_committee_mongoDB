@@ -1,6 +1,10 @@
-@import "authorizationscreenstyle.scss";
+@import "../valo/valo.scss";
+@import "projecttheme.scss";
 
-@include authorizationscreenstyle;
+.projecttheme {
+	@include valo;
+	@include projecttheme;
+}
 
 
 

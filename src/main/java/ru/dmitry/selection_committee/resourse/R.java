@@ -13,10 +13,14 @@ public class R {
         public static final String LOGIN = "Логин";
         public static final String PASSWORD = "Пароль";
         public static final String AUTH = "<font color=\"#0097DE\">ВОЙТИ</font>";
+        public static final String REGISTRATION = "Регистрация";
+        public static final String EMAIL = "Почта";
+        public static final String RETYPE_PASSWORD = "Повторите пароль";
 
         public static class Errors {
             public static final String EMPTY_FIELD = "Поле не заполнено";
             public static final String AUTH_ERROR = "Введенный логин или пароль неверны";
+            public static final String RETYPE_PASS_WRONG = "Пароли не совпадают";
         }
 
     }

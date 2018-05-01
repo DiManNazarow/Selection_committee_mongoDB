@@ -1,0 +1,7 @@
+@import "authorizationscreenstyle.scss";
+@import "registrationscreenstyle.scss";
+
+@mixin projecttheme {
+	@include authorizationscreenstyle;
+	@include registrationscreenstyle;
+}

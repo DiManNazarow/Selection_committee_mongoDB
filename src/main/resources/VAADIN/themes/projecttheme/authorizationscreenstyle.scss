@@ -1,9 +1,6 @@
 $v-focus-style: none;
-@import "../valo/valo.scss";
 
 @mixin authorizationscreenstyle {
-
-	@include valo;
 
 	li{
 		display: block;
@@ -69,11 +66,8 @@ $v-focus-style: none;
     	color: #FFFFFF;
 	}
 
-	.v-app input.v-textfield {
-		color: #FFFFFF;
-	}
-
 	.v-textfield:focus{
+		color: #FFFFFF;
 		outline: none;
 		border: none;
 		box-shadow: none;
@@ -86,6 +80,7 @@ $v-focus-style: none;
 
 	.v-textfield {
 		background-color: #0097DE;
+		color: #FFFFFF;
 		-webkit-border-image: none;
 		-webkit-border-radius: 0px;
 		-webkit-margin-before: 0em;

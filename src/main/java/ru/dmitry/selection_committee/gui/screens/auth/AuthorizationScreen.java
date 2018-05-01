@@ -1,15 +1,19 @@
 package ru.dmitry.selection_committee.gui.screens.auth;
 
-import com.vaadin.server.UserError;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import ru.dmitry.selection_committee.gui.ScreenNavigator;
+import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
+import ru.dmitry.selection_committee.gui.screens.registration.RegistrationScreen;
 import ru.dmitry.selection_committee.gui.views.LoginInputView;
 import ru.dmitry.selection_committee.gui.views.PasswordInputView;
 import ru.dmitry.selection_committee.resourse.R;
 import ru.dmitry.selection_committee.server.models.User;
 import ru.dmitry.selection_committee.server.services.UserServices;
 
-public class AuthorizationScreen extends CustomLayout implements AuthScreenView {
+public class AuthorizationScreen extends CustomLayoutScreen implements AuthScreenView {
+
+    private final String URL = "/";
 
     private UserServices userServices;
 
@@ -24,15 +28,14 @@ public class AuthorizationScreen extends CustomLayout implements AuthScreenView 
     private PasswordInputView passwordFiled;
 
     @Autowired
-    public AuthorizationScreen(UserServices userServices) {
-        super("authorization_screen");
+    public AuthorizationScreen(ScreenNavigator screenNavigator, UserServices userServices) {
+        super(screenNavigator, "authorization_screen");
         this.userServices = userServices;
         authScreenPresenter = new AuthScreenPresenter(userServices,this);
         setSizeFull();
-        getScreenComponents();
     }
 
-    protected void getScreenComponents() {
+    protected void addComponents() {
 
         Label welcome = new Label(R.Strings.AUTH_WELCOME);
         welcome.addStyleName("v-label-welcome");
@@ -49,6 +52,7 @@ public class AuthorizationScreen extends CustomLayout implements AuthScreenView 
 
         Button registrationButton = new Button(R.Strings.REGISTRATION_BUTTON_TEXT);
         registrationButton.addStyleName("v-button_registration");
+        registrationButton.addClickListener(this::onRegisterButtonClick);
         addComponent(registrationButton, "registration_button");
 
         Label signIn = new Label(R.Strings.SIGN_IN);
@@ -80,14 +84,25 @@ public class AuthorizationScreen extends CustomLayout implements AuthScreenView 
         authButton.setCaption(R.Strings.AUTH);
         authButton.addStyleName("v-button_auth");
 
-        authButton.addClickListener((Button.ClickListener) clickEvent -> {
-            authScreenPresenter.auth(login, password);
-        });
+        authButton.addClickListener(this::onAuthButtonClick);
 
         addComponent(authButton, "auth_button");
 
     }
 
+    private void onAuthButtonClick(Button.ClickEvent clickEvent){
+        authScreenPresenter.auth(login, password);
+    }
+
+    private void onRegisterButtonClick(Button.ClickEvent clickEvent){
+        RegistrationScreen registrationScreen = new RegistrationScreen(screenNavigator, screenNavigator.getUserServices());
+        screenNavigator.openScreen(registrationScreen.getUrl(), registrationScreen);
+    }
+
+    @Override
+    public String getUrl() {
+        return URL;
+    }
 
     @Override
     public void onAuthSuccess(User user) {

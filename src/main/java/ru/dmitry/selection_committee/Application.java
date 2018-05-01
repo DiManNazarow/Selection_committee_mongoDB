@@ -22,13 +22,13 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        Admin admin = new Admin();
-        admin.setFirstName("Дмитрий");
-        admin.setSecondName("Назаров");
-        admin.setPatronymic("Алексеевич");
-        admin.setEmail("nazarow.dimon@yandex.ru");
-        admin.setLogin("DiManNazarow");
-        admin.setPassword("4815162342");
-        userServices.insertUser(admin);
+//        Admin admin = new Admin();
+//        admin.setFirstName("Дмитрий");
+//        admin.setSecondName("Назаров");
+//        admin.setPatronymic("Алексеевич");
+//        admin.setEmail("nazarow.dimon@yandex.ru");
+//        admin.setLogin("DiManNazarow");
+//        admin.setPassword("4815162342");
+//        userServices.insertUser(admin);
     }
 }
