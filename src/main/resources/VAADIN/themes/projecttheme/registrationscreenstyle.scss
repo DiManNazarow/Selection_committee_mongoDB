@@ -22,11 +22,11 @@ $v-focus-style: none;
 		background: #0097DE;
 	}
 
-	::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    	color: #828282;
+	.v-textfield-register::-webkit-input-placeholder {
+		color: #828282;
 	}
 
-	.v-textfield:focus{
+	.v-textfield-register:focus {
 		color: #828282;
 		outline: none;
 		border: none;
@@ -38,7 +38,7 @@ $v-focus-style: none;
     	border-right: 0px solid white;	
 	}
 
-	.v-textfield {
+	.v-textfield-register {
 		background-color: white;
 		color: #828282;
 		-webkit-border-image: none;

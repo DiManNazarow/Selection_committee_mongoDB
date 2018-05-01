@@ -56,6 +56,7 @@ public class RegistrationScreen extends CustomLayoutScreen implements RegisterSc
 
         loginInputView = new InputView(new TextField(), R.Strings.LOGIN);
         loginInputView.setTextChangeListener(this::onLoginTextChanged);
+        loginInputView.addInputStyle("v-textfield-register");
         addComponent(loginInputView, "login_field");
 
         Image imageEmail = new Image(null, new ThemeResource("img/ic_local_post_office_black_36px.svg"));
@@ -65,6 +66,7 @@ public class RegistrationScreen extends CustomLayoutScreen implements RegisterSc
 
         emailInputView = new InputView(new TextField(), R.Strings.EMAIL);
         emailInputView.setTextChangeListener(this::onEmailTextChanged);
+        emailInputView.addInputStyle("v-textfield-register");
         addComponent(emailInputView, "email_field");
 
         Image imagePass = new Image(null, new ThemeResource("img/ic_lock_outline_black_36px.svg"));
@@ -74,6 +76,7 @@ public class RegistrationScreen extends CustomLayoutScreen implements RegisterSc
 
         passwordInputView = new PasswordInputView(R.Strings.PASSWORD);
         passwordInputView.setTextChangeListener(this::onPasswordTextChanged);
+        passwordInputView.addInputStyle("v-textfield-register");
         addComponent(passwordInputView, "password_field");
 
         Image imagePassRetype = new Image(null, new ThemeResource("img/ic_lock_outline_black_36px.svg"));
@@ -83,6 +86,7 @@ public class RegistrationScreen extends CustomLayoutScreen implements RegisterSc
 
         retypePasswordInputView = new PasswordInputView(R.Strings.RETYPE_PASSWORD);
         retypePasswordInputView.setTextChangeListener(this::onRetypePasswordChanged);
+        retypePasswordInputView.addInputStyle("v-textfield-register");
         addComponent(retypePasswordInputView, "retype_field");
 
         registrationButton = new Button(R.Strings.REGISTRATION_BUTTON_TEXT);

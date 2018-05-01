@@ -79,4 +79,12 @@ public class InputView<I extends TextField> extends VerticalLayout implements Vi
         return AppTextUtils.isTextEmpty(text);
     }
 
+    public void addInputStyle(String name){
+        inputField.addStyleName(name);
+    }
+
+    public void removeInputStyle(String name){
+        inputField.removeStyleName(name);
+    }
+
 }

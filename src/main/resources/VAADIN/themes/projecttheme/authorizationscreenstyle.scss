@@ -62,11 +62,11 @@ $v-focus-style: none;
 		color: #FFFFFF;
 	}
 
-	::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    	color: #FFFFFF;
+	.v-textfield::-webkit-input-placeholder {
+		color: #FFFFFF;
 	}
 
-	.v-textfield:focus{
+	.v-textfield:focus {
 		color: #FFFFFF;
 		outline: none;
 		border: none;
