@@ -1,7 +1,9 @@
-@import "authorizationscreenstyle.scss";
-@import "registrationscreenstyle.scss";
+@import "authorization_screen_style.scss";
+@import "registration_screen_style.scss";
+@import "enrolle_profile_screen_style.scss";
 
 @mixin projecttheme {
-	@include authorizationscreenstyle;
-	@include registrationscreenstyle;
+	@include authorization_screen_style;
+	@include registration_screen_style;
+	@include enrolle_profile_screen_style;
 }

@@ -4,6 +4,7 @@ import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
+import ru.dmitry.selection_committee.gui.screens.profile.EnrolleProfileScreen;
 import ru.dmitry.selection_committee.gui.screens.registration.RegistrationScreen;
 import ru.dmitry.selection_committee.gui.views.LoginInputView;
 import ru.dmitry.selection_committee.gui.views.PasswordInputView;
@@ -95,8 +96,10 @@ public class AuthorizationScreen extends CustomLayoutScreen implements AuthScree
     }
 
     private void onRegisterButtonClick(Button.ClickEvent clickEvent){
-        RegistrationScreen registrationScreen = new RegistrationScreen(screenNavigator, screenNavigator.getUserServices());
-        screenNavigator.openScreen(registrationScreen.getUrl(), registrationScreen);
+        EnrolleProfileScreen enrolleProfileScreen = new EnrolleProfileScreen(screenNavigator);
+        screenNavigator.openScreen(enrolleProfileScreen.getUrl(), enrolleProfileScreen);
+//        RegistrationScreen registrationScreen = new RegistrationScreen(screenNavigator, screenNavigator.getUserServices());
+//        screenNavigator.openScreen(registrationScreen.getUrl(), registrationScreen);
     }
 
     @Override

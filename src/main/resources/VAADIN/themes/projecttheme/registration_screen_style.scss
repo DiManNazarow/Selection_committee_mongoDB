@@ -1,6 +1,6 @@
 $v-focus-style: none;
 
-@mixin registrationscreenstyle {
+@mixin registration_screen_style {
 
 	.v-registerblock {
 		background-color: white;
@@ -8,7 +8,7 @@ $v-focus-style: none;
 		border-bottom: 2px solid #7A7A7A;
 	}
 
-	.v-headerlabel{
+	.v-headerlabel {
 		color: #828282;
 		font-size: 24px;
 		font-weight: medium;

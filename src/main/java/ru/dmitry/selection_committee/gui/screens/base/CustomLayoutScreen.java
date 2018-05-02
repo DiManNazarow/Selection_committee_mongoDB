@@ -16,6 +16,6 @@ public abstract class CustomLayoutScreen extends CustomLayout implements View {
 
     protected abstract void addComponents();
 
-    protected abstract String getUrl();
+    public abstract String getUrl();
 
 }

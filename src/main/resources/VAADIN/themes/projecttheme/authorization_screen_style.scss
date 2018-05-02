@@ -1,6 +1,6 @@
 $v-focus-style: none;
 
-@mixin authorizationscreenstyle {
+@mixin authorization_screen_style {
 
 	li{
 		display: block;
@@ -164,7 +164,7 @@ $v-focus-style: none;
 	}
 
 	.v-label-auth_error {
-	 	background-color:#EB5635;
+	 	background-color: #EB5635;
 	 	color: #FFFFFF;
 	 	font-size: 14px;
 		font-weight: bold;
