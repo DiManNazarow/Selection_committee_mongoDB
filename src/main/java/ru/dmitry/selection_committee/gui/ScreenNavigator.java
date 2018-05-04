@@ -5,6 +5,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.ui.Component;
 import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
 import ru.dmitry.selection_committee.gui.screens.base.Screen;
+import ru.dmitry.selection_committee.server.services.InstitutionService;
 import ru.dmitry.selection_committee.server.services.UserServices;
 
 import javax.validation.constraints.NotNull;
@@ -15,6 +16,8 @@ import java.util.TreeMap;
 public class ScreenNavigator {
 
     private UserServices userServices;
+
+    private InstitutionService institutionService;
 
     public interface NavigationCallback {
         void onScreenOpenListener(String url);
@@ -52,6 +55,14 @@ public class ScreenNavigator {
 
     public void setUserServices(UserServices userServices) {
         this.userServices = userServices;
+    }
+
+    public InstitutionService getInstitutionService() {
+        return institutionService;
+    }
+
+    public void setInstitutionService(InstitutionService institutionService) {
+        this.institutionService = institutionService;
     }
 
     public void addScreen(String url, View screen){

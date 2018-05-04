@@ -4,7 +4,9 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.MongoClientFactoryBean;
+import ru.dmitry.selection_committee.server.services.InstitutionService;
 import ru.dmitry.selection_committee.server.services.UserServices;
+import ru.dmitry.selection_committee.server.services.impl.InstitutionServiceImpl;
 import ru.dmitry.selection_committee.server.services.impl.UserServicesImpl;
 
 public class ConfigService {
@@ -12,6 +14,11 @@ public class ConfigService {
     @Bean
     public UserServices userServices(){
         return new UserServicesImpl();
+    }
+
+    @Bean
+    public InstitutionService institutionService(){
+        return new InstitutionServiceImpl();
     }
 
     @Bean

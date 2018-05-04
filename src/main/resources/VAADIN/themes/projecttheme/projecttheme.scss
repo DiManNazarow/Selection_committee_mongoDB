@@ -1,9 +1,33 @@
 @import "authorization_screen_style.scss";
 @import "registration_screen_style.scss";
 @import "enrolle_profile_screen_style.scss";
+@import "admin_main_page_style.scss";
+@import "add_institytion_screen_style.scss";
 
 @mixin projecttheme {
 	@include authorization_screen_style;
 	@include registration_screen_style;
 	@include enrolle_profile_screen_style;
+	@include admin_main_page_style;
+	@include add_institytion_screen_style;
+
+	.v-label-image_button {
+		white-space: pre-wrap;
+    	word-wrap: break-word;
+		font-size: 14px;
+		color: #FFFFFF;
+	}
+
+	.v-button-image_button {
+		border: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+		background: #0097DE;
+		.v-button-caption {
+			font-size: 12px;
+    		font-weight: medium;
+    		color: #FFFFFF;
+		}
+	}	
+
 }

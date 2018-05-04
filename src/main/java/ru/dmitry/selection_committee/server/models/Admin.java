@@ -10,7 +10,7 @@ public class Admin extends User {
     }
 
     @Override
-    protected int getRole() {
+    public int getRole() {
         return Role.ADMIN.getRoleCode();
     }
 }

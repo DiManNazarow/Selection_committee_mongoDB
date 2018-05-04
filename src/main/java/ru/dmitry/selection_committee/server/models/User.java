@@ -45,7 +45,7 @@ public abstract class User {
         role = getRole();
     }
 
-    protected abstract int getRole();
+    public abstract int getRole();
 
     public String getId() {
         return id;

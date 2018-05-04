@@ -14,6 +14,10 @@ public class Speciality {
      */
     private String name;
     /**
+     * Код специальности
+     */
+    private String code;
+    /**
      * Описание
      */
     private String description;
@@ -37,6 +41,14 @@ public class Speciality {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getDescription() {

@@ -42,9 +42,6 @@ public class RegistrationScreen extends CustomLayoutScreen implements RegisterSc
 
     protected void addComponents() {
 
-        HorizontalLayout headerContainer = new HorizontalLayout();
-        headerContainer.setMargin(false);
-
         Label header = new Label(R.Strings.REGISTRATION);
         header.addStyleName("v-headerlabel");
         addComponent(header, "header");

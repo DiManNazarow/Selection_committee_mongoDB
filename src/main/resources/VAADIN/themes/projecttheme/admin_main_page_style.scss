@@ -1,0 +1,49 @@
+@mixin admin_main_page_style {
+
+	#admin_root {
+		width: 100%;
+		height: 100%;
+		background: #0097DE;
+	}
+
+	#add_study {
+		width: 100%;
+		overflow-y: hidden;
+		padding-top: 10%;
+	}
+
+	#add_enrolle {
+		padding-left: 50px;
+		padding-top: 50px;
+	}
+
+	#list_layout {
+		width: 100%;
+		overflow-y: hidden;
+		padding-top: 50px;
+	}
+
+	.list {
+		float: left;
+		padding-left: 50px;
+	}
+
+	.v-button-add {
+		border: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+		background: #0097DE;
+		.v-button-caption {
+			font-size: 12px;
+    		font-weight: medium;
+    		color: #FFFFFF;
+		}
+	}
+
+	.v-image-caption {
+		font-size: 12px;
+		font-weight: medium;
+		color: #FFFFFF;
+	}
+
+}

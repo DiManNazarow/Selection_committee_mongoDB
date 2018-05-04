@@ -10,9 +10,13 @@ public class Institution {
     @Id
     public String id;
     /**
-     * Название
+     * Краткое название
      */
-    private String name;
+    private String shortName;
+    /**
+     * Полное название
+     */
+    private String fullName;
     /**
      * город
      */
@@ -34,12 +38,20 @@ public class Institution {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getShortName() {
+        return shortName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getCity() {

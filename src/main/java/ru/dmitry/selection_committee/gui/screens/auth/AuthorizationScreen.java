@@ -3,13 +3,13 @@ package ru.dmitry.selection_committee.gui.screens.auth;
 import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
+import ru.dmitry.selection_committee.gui.screens.admin.AdminMainPageScreen;
 import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
 import ru.dmitry.selection_committee.gui.screens.profile.EnrolleProfileScreen;
 import ru.dmitry.selection_committee.gui.screens.registration.RegistrationScreen;
 import ru.dmitry.selection_committee.gui.views.LoginInputView;
 import ru.dmitry.selection_committee.gui.views.PasswordInputView;
 import ru.dmitry.selection_committee.resourse.R;
-import ru.dmitry.selection_committee.server.models.User;
 import ru.dmitry.selection_committee.server.services.UserServices;
 
 public class AuthorizationScreen extends CustomLayoutScreen implements AuthScreenView {
@@ -96,10 +96,8 @@ public class AuthorizationScreen extends CustomLayoutScreen implements AuthScree
     }
 
     private void onRegisterButtonClick(Button.ClickEvent clickEvent){
-        EnrolleProfileScreen enrolleProfileScreen = new EnrolleProfileScreen(screenNavigator);
-        screenNavigator.openScreen(enrolleProfileScreen.getUrl(), enrolleProfileScreen);
-//        RegistrationScreen registrationScreen = new RegistrationScreen(screenNavigator, screenNavigator.getUserServices());
-//        screenNavigator.openScreen(registrationScreen.getUrl(), registrationScreen);
+        RegistrationScreen registrationScreen = new RegistrationScreen(screenNavigator, screenNavigator.getUserServices());
+        screenNavigator.openScreen(registrationScreen.getUrl(), registrationScreen);
     }
 
     @Override
@@ -108,10 +106,15 @@ public class AuthorizationScreen extends CustomLayoutScreen implements AuthScree
     }
 
     @Override
-    public void onAuthSuccess(User user) {
-        loginField.hideError();
-        passwordFiled.hideError();
-        Notification.show(user.getFirstName());
+    public void onAuthAdmin() {
+        AdminMainPageScreen adminMainPageScreen = new AdminMainPageScreen(screenNavigator);
+        screenNavigator.openScreen(adminMainPageScreen.getUrl(), adminMainPageScreen);
+    }
+
+    @Override
+    public void onAuthEnrolle() {
+        EnrolleProfileScreen enrolleProfileScreen = new EnrolleProfileScreen(screenNavigator);
+        screenNavigator.openScreen(enrolleProfileScreen.getUrl(), enrolleProfileScreen);
     }
 
     @Override

@@ -48,7 +48,7 @@ public class Enrollee extends User {
     }
 
     @Override
-    protected int getRole() {
+    public int getRole() {
         return Role.ENROLLE.getRoleCode();
     }
 

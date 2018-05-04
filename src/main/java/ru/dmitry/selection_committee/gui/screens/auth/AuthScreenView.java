@@ -5,7 +5,9 @@ import ru.dmitry.selection_committee.server.models.User;
 
 public interface AuthScreenView extends MvpView {
 
-    void onAuthSuccess(User user);
+    void onAuthAdmin();
+
+    void onAuthEnrolle();
 
     void onLoginEmpty();
 
