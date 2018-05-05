@@ -1,6 +1,9 @@
 package ru.dmitry.selection_committee.server.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+
+import java.util.List;
 
 /**
  * Модель "Учебное заведение"
@@ -29,6 +32,9 @@ public class Institution {
      * дом
      */
     private String home;
+
+    @DBRef
+    private List<Department> departments;
 
     public String getId() {
         return id;
@@ -76,5 +82,13 @@ public class Institution {
 
     public void setHome(String home) {
         this.home = home;
+    }
+
+    public List<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(List<Department> departments) {
+        this.departments = departments;
     }
 }

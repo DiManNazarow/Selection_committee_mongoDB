@@ -27,6 +27,6 @@ public class UserServicesImpl implements UserServices {
 
     @Override
     public String insertUser(User user) {
-        return userRepository.insert(user).id;
+        return userRepository.save(user).id;
     }
 }

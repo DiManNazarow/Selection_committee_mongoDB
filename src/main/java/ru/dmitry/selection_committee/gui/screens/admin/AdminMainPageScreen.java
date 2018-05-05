@@ -5,6 +5,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Image;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
+import ru.dmitry.selection_committee.gui.screens.list.InstitutionListScreen;
 import ru.dmitry.selection_committee.gui.views.ImageButton;
 import ru.dmitry.selection_committee.resourse.R;
 
@@ -12,12 +13,9 @@ public class AdminMainPageScreen extends CustomLayoutScreen {
 
     private final String URL = "admin_main_page";
 
-    private ThemeResource listButtonImage;
-
     public AdminMainPageScreen(ScreenNavigator screenNavigator) {
         super(screenNavigator, "admin_main_page");
         setSizeFull();
-        listButtonImage = new ThemeResource("img/ic_list_white_48px.svg");
     }
 
     @Override
@@ -35,10 +33,12 @@ public class AdminMainPageScreen extends CustomLayoutScreen {
 
         Button addPulpitButton = new Button(R.Strings.ADD_NEW_PULPIT);
         addPulpitButton.addStyleName("v-button-add");
+        addPulpitButton.addClickListener(this::onAddPulpitButtonClick);
         addComponent(addPulpitButton, "add_pulpit");
 
         Button addSpecialityButton = new Button(R.Strings.ADD_NEW_SPECIALITY);
         addSpecialityButton.addStyleName("v-button-add");
+        addSpecialityButton.addClickListener(this::onAddSpecialityButtonClick);
         addComponent(addSpecialityButton, "add_speciality");
 
         Button addEnrolleButton = new Button(R.Strings.ADD_NEW_ENTOLLE);
@@ -49,6 +49,7 @@ public class AdminMainPageScreen extends CustomLayoutScreen {
         addComponent(enrolleListButton, "enrolle_list");
 
         ImageButton universityListButton = new ImageButton(R.Strings.UNIVERSITY_LIST, new ThemeResource("img/ic_list_white_48px.svg"));
+        universityListButton.setImageButtonClickListener(this::onListInstitutionClick);
         addComponent(universityListButton, "university_list");
 
         ImageButton departmentListButton = new ImageButton(R.Strings.DEPARTMENT_LIST, new ThemeResource("img/ic_list_white_48px.svg"));
@@ -70,6 +71,21 @@ public class AdminMainPageScreen extends CustomLayoutScreen {
     private void onAddDepartmentButtonClick(Button.ClickEvent clickEvent){
         AddDepartmentScreen addDepartmentScreen = new AddDepartmentScreen(screenNavigator);
         screenNavigator.openScreen(addDepartmentScreen.getUrl(), addDepartmentScreen);
+    }
+
+    private void onAddPulpitButtonClick(Button.ClickEvent clickEvent){
+        AddPulpitScreen addPulpitScreen = new AddPulpitScreen(screenNavigator);
+        screenNavigator.openScreen(addPulpitScreen.getUrl(), addPulpitScreen);
+    }
+
+    private void onAddSpecialityButtonClick(Button.ClickEvent clickEvent){
+        AddSpecialityScreen addSpecialityScreen = new AddSpecialityScreen(screenNavigator);
+        screenNavigator.openScreen(addSpecialityScreen.getUrl(), addSpecialityScreen);
+    }
+
+    private void onListInstitutionClick(){
+        InstitutionListScreen institutionListScreen = new InstitutionListScreen(screenNavigator);
+        screenNavigator.openScreen(institutionListScreen.getUrl(), institutionListScreen);
     }
 
     @Override

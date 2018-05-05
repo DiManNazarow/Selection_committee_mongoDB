@@ -5,6 +5,6 @@ import ru.dmitry.selection_committee.server.models.Department;
 
 public interface DepartmentRepository extends MongoRepository<Department, String> {
 
-
+    Department findByFullName(String fullName);
 
 }

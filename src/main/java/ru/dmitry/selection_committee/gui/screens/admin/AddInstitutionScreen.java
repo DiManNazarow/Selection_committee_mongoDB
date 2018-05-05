@@ -118,6 +118,11 @@ public class AddInstitutionScreen extends CustomLayoutScreen implements AddInsti
     }
 
     @Override
+    public void onReferenceNotSelected() {
+
+    }
+
+    @Override
     public void onFullNameEmpty() {
         fullNameInput.showEmptyTextError();
     }

@@ -2,31 +2,29 @@ package ru.dmitry.selection_committee.gui.screens.admin.presenters;
 
 import ru.dmitry.selection_committee.gui.mvp.BasePresenter;
 import ru.dmitry.selection_committee.server.models.Department;
-import ru.dmitry.selection_committee.server.models.Institution;
+import ru.dmitry.selection_committee.server.models.Pulpit;
 import ru.dmitry.selection_committee.server.services.DepartmentService;
-import ru.dmitry.selection_committee.server.services.InstitutionService;
+import ru.dmitry.selection_committee.server.services.PulpitService;
 import ru.dmitry.selection_committee.utils.AppTextUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
-public class AddDepartmentScreenPresenter extends BasePresenter<AddScreenView> {
+public class AddPulpitScreenPresenter extends BasePresenter<AddScreenView> {
 
     private String shortName;
 
     private String fullName;
 
-    private Institution institution;
+    private Department department;
 
     private DepartmentService departmentService;
 
-    private InstitutionService institutionService;
+    private PulpitService pulpitService;
 
-    public AddDepartmentScreenPresenter(AddScreenView mvpView, DepartmentService departmentService, InstitutionService institutionService) {
+    public AddPulpitScreenPresenter(AddScreenView mvpView, PulpitService pulpitService, DepartmentService departmentService) {
         super(mvpView);
+        this.pulpitService = pulpitService;
         this.departmentService = departmentService;
-        this.institutionService = institutionService;
     }
 
     public void setShortName(String shortName) {
@@ -37,8 +35,8 @@ public class AddDepartmentScreenPresenter extends BasePresenter<AddScreenView> {
         this.fullName = fullName;
     }
 
-    public void setInstitution(Institution institution) {
-        this.institution = institution;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public void add(){
@@ -50,27 +48,28 @@ public class AddDepartmentScreenPresenter extends BasePresenter<AddScreenView> {
             getViewState().onFullNameEmpty();
             return;
         }
-        if (institution == null){
+        if (department == null){
             getViewState().onReferenceNotSelected();
             return;
         }
-        Department department = new Department();
-        department.setShortName(shortName);
-        department.setFullName(fullName);
-        department.setInstitutionId(institution.id);
-        String id = departmentService.insert(department);
+        Pulpit pulpit = new Pulpit();
+        pulpit.setShortName(shortName);
+        pulpit.setFullName(fullName);
+        pulpit.setDepartmentId(department.getId());
+        String id = pulpitService.insert(pulpit);
         if (!AppTextUtils.isTextEmpty(id)){
-            department.setId(id);
-            if (institution.getDepartments() == null || institution.getDepartments().isEmpty()){
-                institution.setDepartments(Collections.singletonList(department));
+            pulpit.setId(id);
+            if (department.getPulpits() == null || department.getPulpits().isEmpty()){
+                department.setPulpits(Collections.singletonList(pulpit));
             } else {
-                institution.getDepartments().add(department);
+                department.getPulpits().add(pulpit);
             }
-            institutionService.insert(institution);
+            departmentService.insert(department);
             getViewState().onSuccessAdded();
         } else {
             getViewState().onFailAdded();
         }
+
     }
 
 }

@@ -7,9 +7,7 @@ import com.vaadin.server.*;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.UI;
 import ru.dmitry.selection_committee.gui.screens.auth.AuthorizationScreen;
-import ru.dmitry.selection_committee.server.services.DepartmentService;
-import ru.dmitry.selection_committee.server.services.InstitutionService;
-import ru.dmitry.selection_committee.server.services.UserServices;
+import ru.dmitry.selection_committee.server.services.*;
 
 @SpringUI
 @Theme("projecttheme")
@@ -26,11 +24,17 @@ public class VaadinUI extends UI implements ScreenNavigator.NavigationCallback {
 
     private DepartmentService departmentService;
 
-    public VaadinUI(UserServices userServices, InstitutionService institutionService, DepartmentService departmentService){
+    private PulpitService pulpitService;
+
+    private SpecialityService specialityService;
+
+    public VaadinUI(UserServices userServices, InstitutionService institutionService, DepartmentService departmentService, PulpitService pulpitService, SpecialityService specialityService){
         super();
         this.userServices = userServices;
         this.institutionService = institutionService;
         this.departmentService = departmentService;
+        this.pulpitService = pulpitService;
+        this.specialityService = specialityService;
         vaadinNavigator = new Navigator(this, this);
         screenNavigator = new ScreenNavigator(this, vaadinNavigator);
         setupScreenNavigator();
@@ -60,6 +64,8 @@ public class VaadinUI extends UI implements ScreenNavigator.NavigationCallback {
         screenNavigator.setUserServices(userServices);
         screenNavigator.setInstitutionService(institutionService);
         screenNavigator.setDepartmentService(departmentService);
+        screenNavigator.setPulpitService(pulpitService);
+        screenNavigator.setSpecialityService(specialityService);
         AuthorizationScreen authorizationScreen = new AuthorizationScreen(screenNavigator, userServices);
         screenNavigator.addScreen(authorizationScreen.getUrl(), authorizationScreen);
     }

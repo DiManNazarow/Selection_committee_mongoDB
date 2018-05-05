@@ -15,7 +15,7 @@ public class InstitutionServiceImpl implements InstitutionService {
 
     @Override
     public String insert(Institution institution) {
-        return institutionRepository.insert(institution).id;
+        return institutionRepository.save(institution).id;
     }
 
     @Override

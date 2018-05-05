@@ -1,6 +1,9 @@
 package ru.dmitry.selection_committee.server.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+
+import java.util.List;
 
 /**
  * Модель "Кафедра"
@@ -26,6 +29,9 @@ public class Pulpit {
      * {@link Department}
      */
     private String departmentId;
+
+    @DBRef
+    private List<Speciality> specialities;
 
     public String getId() {
         return id;
@@ -65,5 +71,13 @@ public class Pulpit {
 
     public void setDepartmentId(String departmentId) {
         this.departmentId = departmentId;
+    }
+
+    public List<Speciality> getSpecialities() {
+        return specialities;
+    }
+
+    public void setSpecialities(List<Speciality> specialities) {
+        this.specialities = specialities;
     }
 }

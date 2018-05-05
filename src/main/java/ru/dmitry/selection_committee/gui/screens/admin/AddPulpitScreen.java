@@ -1,39 +1,40 @@
 package ru.dmitry.selection_committee.gui.screens.admin;
 
-import com.vaadin.ui.*;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.TextField;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
-import ru.dmitry.selection_committee.gui.screens.admin.presenters.AddDepartmentScreenPresenter;
+import ru.dmitry.selection_committee.gui.screens.admin.presenters.AddPulpitScreenPresenter;
 import ru.dmitry.selection_committee.gui.screens.admin.presenters.AddScreenView;
 import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
 import ru.dmitry.selection_committee.gui.views.InputView;
 import ru.dmitry.selection_committee.gui.views.ListSelectView;
 import ru.dmitry.selection_committee.resourse.R;
-import ru.dmitry.selection_committee.server.models.Institution;
+import ru.dmitry.selection_committee.server.models.Department;
 
-import java.util.Set;
+public class AddPulpitScreen extends CustomLayoutScreen implements AddScreenView {
 
-public class AddDepartmentScreen extends CustomLayoutScreen implements AddScreenView {
-
-    private final String URL = "add_department";
+    private final String URL = "add_pulpit";
 
     private InputView shortNameInput;
 
     private InputView fullNameInput;
 
-    private ListSelectView institution;
+    private ListSelectView department;
 
-    private AddDepartmentScreenPresenter departmentScreenPresenter;
+    private AddPulpitScreenPresenter pulpitScreenPresenter;
 
-    public AddDepartmentScreen(ScreenNavigator screenNavigator) {
-        super(screenNavigator, "add_department_screen");
+    public AddPulpitScreen(ScreenNavigator screenNavigator) {
+        super(screenNavigator, "add_pulpit_screen");
+        pulpitScreenPresenter = new AddPulpitScreenPresenter(this, screenNavigator.getPulpitService(), screenNavigator.getDepartmentService());
         setSizeFull();
-        departmentScreenPresenter = new AddDepartmentScreenPresenter(this, screenNavigator.getDepartmentService(), screenNavigator.getInstitutionService());
     }
 
     @Override
     protected void addComponents() {
 
-        Label header = new Label(R.Strings.DEPARTMENT);
+        Label header = new Label(R.Strings.PULPIT);
         header.addStyleName("v-headerlabel");
         addComponent(header, "header");
 
@@ -47,10 +48,10 @@ public class AddDepartmentScreen extends CustomLayoutScreen implements AddScreen
         fullNameInput.setTextChangeListener(this::onLongNameChanged);
         addComponent(fullNameInput, "full_name_field");
 
-        institution = new ListSelectView(R.Strings.UNIVERSITY_LIST);
-        institution.setData(screenNavigator.getInstitutionService().getInstitutionsNames());
-        institution.setOnItemSelectedListener(this::onInstitutionSelect);
-        addComponent(institution, "institution_field");
+        department = new ListSelectView(R.Strings.DEPARTMENT_LIST);
+        department.setData(screenNavigator.getDepartmentService().getDepartmentNames());
+        department.setOnItemSelectedListener(this::onInstitutionSelect);
+        addComponent(department, "departments_field");
 
         Button addButton = new Button(R.Strings.ADD);
         addButton.addStyleName("v-button-add_department");
@@ -60,20 +61,20 @@ public class AddDepartmentScreen extends CustomLayoutScreen implements AddScreen
     }
 
     private void onShortNameChanged(CharSequence text){
-        departmentScreenPresenter.setShortName(text.toString());
+        pulpitScreenPresenter.setShortName(text.toString());
     }
 
     private void onLongNameChanged(CharSequence text){
-        departmentScreenPresenter.setFullName(text.toString());
+        pulpitScreenPresenter.setFullName(text.toString());
     }
 
-    private void onInstitutionSelect(String name){
-        Institution institution = screenNavigator.getInstitutionService().findByFullName(name);
-        departmentScreenPresenter.setInstitution(institution);
+    private void onInstitutionSelect(CharSequence text){
+        Department department = screenNavigator.getDepartmentService().findByFullName(text.toString());
+        pulpitScreenPresenter.setDepartment(department);
     }
 
     private void onAddButtonClick(Button.ClickEvent clickEvent){
-        departmentScreenPresenter.add();
+        pulpitScreenPresenter.add();
     }
 
     @Override
@@ -88,7 +89,12 @@ public class AddDepartmentScreen extends CustomLayoutScreen implements AddScreen
 
     @Override
     public void onFailAdded() {
-        Notification.show("Ошибка добавления факультета");
+        Notification.show("Ошибка добавления кафедры");
+    }
+
+    @Override
+    public void onFullNameEmpty() {
+        fullNameInput.showEmptyTextError();
     }
 
     @Override
@@ -98,12 +104,7 @@ public class AddDepartmentScreen extends CustomLayoutScreen implements AddScreen
 
     @Override
     public void onReferenceNotSelected() {
-        Notification.show("Выберите учебное заведение из списка");
-    }
-
-    @Override
-    public void onFullNameEmpty() {
-        fullNameInput.showEmptyTextError();
+        Notification.show("Выберите факультет из списка");
     }
 
 }

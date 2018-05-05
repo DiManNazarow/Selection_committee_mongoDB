@@ -4,6 +4,8 @@ public class R {
 
     public static class Strings {
 
+        public static final String PENGTU = "ПензГТУ";
+
         public static final String AUTH_WELCOME = "Добро пожаловать";
         public static final String AUTH_INTRODUCE = "Приветсвуем вас на портале приемной комисии\nучебного заведения";
         public static final String AUTH_OBSERVE = "Следите за процессом приемной комисии если вы абитуриент";
@@ -41,6 +43,8 @@ public class R {
         public static final String STREET_HINT = "Улица*";
         public static final String HOUSE_HINT = "Дом/строение*";
         public static final String ADD = "Добавить";
+        public static final String NAME_HINT = "Наименование";
+        public static final String CODE_HINT = "Код специальности";
 
         public static final String PERSONAL_DATA = "Персональные данные";
         public static final String FIRST_NAME = "Имя*";
@@ -57,6 +61,10 @@ public class R {
         public static final String ATTESTAT_NUMBER = "Номер аттестата*";
         public static final String SCHOOL_NAME = "Название учебного заведения выдавшего атестат*";
         public static final String SAVE_OR_UPDATE = "СОХРАНИТЬ & ОБНОВИТЬ";
+
+        public static final String FILTERS = "Фильтры";
+        public static final String CLEAR_FILTERS = "Сбросить все";
+        public static final String CITY_FILTER = "Город";
 
         public static class Errors {
             public static final String EMPTY_FIELD = "Поле не заполнено";

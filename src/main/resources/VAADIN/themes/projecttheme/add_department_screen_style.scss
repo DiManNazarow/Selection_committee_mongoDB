@@ -6,4 +6,17 @@ $v-focus-style: none;
 		height: auto;
 	}
 
+	.v-button-add_department {
+		height: 50px;
+		border: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+		background: #0097DE;
+		margin-top: 20px;
+		.v-button-caption {
+			font-size: 16px;
+    		font-weight: medium;
+    		color: #FFFFFF;
+		}
+	}
 }

@@ -4,12 +4,8 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.MongoClientFactoryBean;
-import ru.dmitry.selection_committee.server.services.DepartmentService;
-import ru.dmitry.selection_committee.server.services.InstitutionService;
-import ru.dmitry.selection_committee.server.services.UserServices;
-import ru.dmitry.selection_committee.server.services.impl.DepartmentServiceImpl;
-import ru.dmitry.selection_committee.server.services.impl.InstitutionServiceImpl;
-import ru.dmitry.selection_committee.server.services.impl.UserServicesImpl;
+import ru.dmitry.selection_committee.server.services.*;
+import ru.dmitry.selection_committee.server.services.impl.*;
 
 public class ConfigService {
 
@@ -26,6 +22,16 @@ public class ConfigService {
     @Bean
     public DepartmentService departmentService(){
         return new DepartmentServiceImpl();
+    }
+
+    @Bean
+    public PulpitService pulpitService(){
+        return new PulpitServiceImpl();
+    }
+
+    @Bean
+    public SpecialityService specialityService(){
+        return new SpecialityServiceImpl();
     }
 
     @Bean
