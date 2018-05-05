@@ -25,17 +25,12 @@ public class AdminMainPageScreen extends CustomLayoutScreen {
 
         Button addUniversityButton = new Button(R.Strings.ADD_NEW_UNIVERSITY);
         addUniversityButton.addStyleName("v-button-add");
-        addUniversityButton.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent clickEvent) {
-                AddInstitutionScreen addInstitutionScreen = new AddInstitutionScreen(screenNavigator, screenNavigator.getInstitutionService());
-                screenNavigator.openScreen(addInstitutionScreen.getUrl(), addInstitutionScreen);
-            }
-        });
+        addUniversityButton.addClickListener(this::onAddUniversityButtonClick);
         addComponent(addUniversityButton, "add_university");
 
         Button addDepartmentButton = new Button(R.Strings.ADD_NEW_DEPARTMENT);
         addDepartmentButton.addStyleName("v-button-add");
+        addDepartmentButton.addClickListener(this::onAddDepartmentButtonClick);
         addComponent(addDepartmentButton, "add_department");
 
         Button addPulpitButton = new Button(R.Strings.ADD_NEW_PULPIT);
@@ -65,6 +60,16 @@ public class AdminMainPageScreen extends CustomLayoutScreen {
         ImageButton specialityListButton = new ImageButton(R.Strings.SPECIALITY_LIST, new ThemeResource("img/ic_list_white_48px.svg"));
         addComponent(specialityListButton, "speciality_list");
 
+    }
+
+    private void onAddUniversityButtonClick(Button.ClickEvent clickEvent){
+        AddInstitutionScreen addInstitutionScreen = new AddInstitutionScreen(screenNavigator);
+        screenNavigator.openScreen(addInstitutionScreen.getUrl(), addInstitutionScreen);
+    }
+
+    private void onAddDepartmentButtonClick(Button.ClickEvent clickEvent){
+        AddDepartmentScreen addDepartmentScreen = new AddDepartmentScreen(screenNavigator);
+        screenNavigator.openScreen(addDepartmentScreen.getUrl(), addDepartmentScreen);
     }
 
     @Override

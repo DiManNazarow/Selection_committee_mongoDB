@@ -26,15 +26,12 @@ public class AddInstitutionScreen extends CustomLayoutScreen implements AddInsti
 
     private InputView houseInput;
 
-    private InstitutionService institutionService;
-
     private AddInstitutionScreenPresenter addInstitutionScreenPresenter;
 
-    public AddInstitutionScreen(ScreenNavigator screenNavigator, InstitutionService institutionService) {
+    public AddInstitutionScreen(ScreenNavigator screenNavigator) {
         super(screenNavigator, "add_institution_screen");
-        this.institutionService = institutionService;
         setSizeFull();
-        addInstitutionScreenPresenter = new AddInstitutionScreenPresenter(this, institutionService);
+        addInstitutionScreenPresenter = new AddInstitutionScreenPresenter(this, screenNavigator.getInstitutionService());
     }
 
     @Override
@@ -112,6 +109,31 @@ public class AddInstitutionScreen extends CustomLayoutScreen implements AddInsti
 
     @Override
     public void onFailAdded() {
-        Notification.show("Fail");
+        Notification.show("Ошибка добавления учебного заведения");
+    }
+
+    @Override
+    public void onShortNameEmpty() {
+        shortNameInput.showEmptyTextError();
+    }
+
+    @Override
+    public void onFullNameEmpty() {
+        fullNameInput.showEmptyTextError();
+    }
+
+    @Override
+    public void onCityEmpty() {
+        cityInput.showEmptyTextError();
+    }
+
+    @Override
+    public void onStreetEmpty() {
+        streetInput.showEmptyTextError();
+    }
+
+    @Override
+    public void onHouseEmpty() {
+        houseInput.showEmptyTextError();
     }
 }

@@ -5,6 +5,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.ui.Component;
 import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
 import ru.dmitry.selection_committee.gui.screens.base.Screen;
+import ru.dmitry.selection_committee.server.services.DepartmentService;
 import ru.dmitry.selection_committee.server.services.InstitutionService;
 import ru.dmitry.selection_committee.server.services.UserServices;
 
@@ -18,6 +19,8 @@ public class ScreenNavigator {
     private UserServices userServices;
 
     private InstitutionService institutionService;
+
+    private DepartmentService departmentService;
 
     public interface NavigationCallback {
         void onScreenOpenListener(String url);
@@ -63,6 +66,14 @@ public class ScreenNavigator {
 
     public void setInstitutionService(InstitutionService institutionService) {
         this.institutionService = institutionService;
+    }
+
+    public DepartmentService getDepartmentService() {
+        return departmentService;
+    }
+
+    public void setDepartmentService(DepartmentService departmentService) {
+        this.departmentService = departmentService;
     }
 
     public void addScreen(String url, View screen){

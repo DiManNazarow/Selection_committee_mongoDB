@@ -3,6 +3,7 @@
 @import "enrolle_profile_screen_style.scss";
 @import "admin_main_page_style.scss";
 @import "add_institytion_screen_style.scss";
+@import "add_department_screen_style.scss";
 
 @mixin projecttheme {
 	@include authorization_screen_style;
@@ -10,6 +11,7 @@
 	@include enrolle_profile_screen_style;
 	@include admin_main_page_style;
 	@include add_institytion_screen_style;
+	@include add_department_screen_style;
 
 	.v-label-image_button {
 		white-space: pre-wrap;

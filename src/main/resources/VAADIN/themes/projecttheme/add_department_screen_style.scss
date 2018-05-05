@@ -1,0 +1,9 @@
+$v-focus-style: none;
+
+@mixin add_department_screen_style {
+
+	#institution_list {
+		height: auto;
+	}
+
+}

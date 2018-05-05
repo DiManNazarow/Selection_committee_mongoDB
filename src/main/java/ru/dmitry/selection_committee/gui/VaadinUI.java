@@ -7,6 +7,7 @@ import com.vaadin.server.*;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.UI;
 import ru.dmitry.selection_committee.gui.screens.auth.AuthorizationScreen;
+import ru.dmitry.selection_committee.server.services.DepartmentService;
 import ru.dmitry.selection_committee.server.services.InstitutionService;
 import ru.dmitry.selection_committee.server.services.UserServices;
 
@@ -23,10 +24,13 @@ public class VaadinUI extends UI implements ScreenNavigator.NavigationCallback {
 
     private InstitutionService institutionService;
 
-    public VaadinUI(UserServices userServices, InstitutionService institutionService){
+    private DepartmentService departmentService;
+
+    public VaadinUI(UserServices userServices, InstitutionService institutionService, DepartmentService departmentService){
         super();
         this.userServices = userServices;
         this.institutionService = institutionService;
+        this.departmentService = departmentService;
         vaadinNavigator = new Navigator(this, this);
         screenNavigator = new ScreenNavigator(this, vaadinNavigator);
         setupScreenNavigator();
@@ -55,6 +59,7 @@ public class VaadinUI extends UI implements ScreenNavigator.NavigationCallback {
     private void setupScreenNavigator(){
         screenNavigator.setUserServices(userServices);
         screenNavigator.setInstitutionService(institutionService);
+        screenNavigator.setDepartmentService(departmentService);
         AuthorizationScreen authorizationScreen = new AuthorizationScreen(screenNavigator, userServices);
         screenNavigator.addScreen(authorizationScreen.getUrl(), authorizationScreen);
     }

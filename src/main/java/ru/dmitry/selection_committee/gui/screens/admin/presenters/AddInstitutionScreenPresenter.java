@@ -45,6 +45,21 @@ public class AddInstitutionScreenPresenter extends BasePresenter<AddInstitutionS
     }
 
     public void add(){
+        if (AppTextUtils.isTextEmpty(fullName)){
+            getViewState().onFullNameEmpty();
+        }
+        if (AppTextUtils.isTextEmpty(shortName)){
+            getViewState().onShortNameEmpty();
+        }
+        if (AppTextUtils.isTextEmpty(city)){
+            getViewState().onCityEmpty();
+        }
+        if (AppTextUtils.isTextEmpty(street)){
+            getViewState().onStreetEmpty();
+        }
+        if (AppTextUtils.isTextEmpty(house)){
+            getViewState().onHouseEmpty();
+        }
         Institution institution = new Institution();
         institution.setFullName(fullName);
         institution.setShortName(shortName);

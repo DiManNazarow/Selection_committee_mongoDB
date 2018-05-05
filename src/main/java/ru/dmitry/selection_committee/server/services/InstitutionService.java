@@ -10,4 +10,8 @@ public interface InstitutionService {
 
     List<Institution> getAll();
 
+    List<String> getInstitutionsNames();
+
+    Institution findByFullName(String fullName);
+
 }

@@ -5,6 +5,6 @@ import ru.dmitry.selection_committee.server.models.Institution;
 
 public interface InstitutionRepository extends MongoRepository<Institution, String> {
 
-
+    Institution findByFullName(String fullName);
 
 }

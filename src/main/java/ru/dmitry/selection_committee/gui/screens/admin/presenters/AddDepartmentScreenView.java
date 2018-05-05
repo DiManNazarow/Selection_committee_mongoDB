@@ -2,7 +2,7 @@ package ru.dmitry.selection_committee.gui.screens.admin.presenters;
 
 import ru.dmitry.selection_committee.gui.mvp.MvpView;
 
-public interface AddInstitutionScreenView extends MvpView {
+public interface AddDepartmentScreenView extends MvpView {
 
     void onSuccessAdded();
 
@@ -12,10 +12,6 @@ public interface AddInstitutionScreenView extends MvpView {
 
     void onFullNameEmpty();
 
-    void onCityEmpty();
-
-    void onStreetEmpty();
-
-    void onHouseEmpty();
+    void onInstitutionNotSelected();
 
 }
