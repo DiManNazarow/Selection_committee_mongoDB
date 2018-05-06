@@ -29,6 +29,16 @@ public class InstitutionServiceImpl implements InstitutionService {
     }
 
     @Override
+    public List<Institution> filterByShortNameOrFullName(String name) {
+        return institutionRepository.findByFullNameContainingOrShortNameContaining(name, name);
+    }
+
+    @Override
+    public List<Institution> filterByCity(String city) {
+        return institutionRepository.findByCityContaining(city);
+    }
+
+    @Override
     public List<String> getInstitutionsNames(){
         List<String> names = new ArrayList<>();
         institutionRepository.findAll().forEach(institution -> names.add(institution.getFullName()));

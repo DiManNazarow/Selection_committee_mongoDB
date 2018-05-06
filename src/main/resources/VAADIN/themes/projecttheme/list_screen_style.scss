@@ -37,12 +37,14 @@ $v-focus-style: none;
 
 	.v-label-filter_list_title {
 		color: black;
-		font-size: 13px;
+		font-size: 16px;
+		font-weight: medium;
 	}
 
-	.v-label-filter_list_clear {
-		color: #0097DE;
-		font-size: 12px;
+	.v-filter-header {
+		width: 100%;
+		background-color: #F0F0F0;
+		padding-left: 8px;
 	}
 
 	.v-textfield-search_header {
@@ -73,6 +75,46 @@ $v-focus-style: none;
     	-webkit-box-shadow: none;
     	border-radius: 15px;
     	border: 1px solid #F0F0F0;
+	}
+
+	.v-textfield-search_filter:focus {
+		height: 30px;
+		background-color: white;
+		color: #696969;
+		-webkit-border-image: none;
+		-webkit-border-radius: 0px;
+		-webkit-margin-before: 0em;
+    	-webkit-margin-after: 0em;
+    	-webkit-margin-start: 0px;
+    	-webkit-margin-end: 0px;
+    	-webkit-box-shadow: none;
+    	border-radius: 15px;
+    	border: 1px solid #F0F0F0;
+	}
+
+	.v-button-clear {
+		border: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+		background: #F0F0F0;
+		.v-button-caption {
+			font-size: 12px;
+    		font-weight: regular;
+    		color: #0097DE;
+		}
+	}
+
+	.v-button-apply {
+		width: 80%;
+		border: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+		background: #EB5757;
+		.v-button-caption {
+			font-size: 12px;
+    		font-weight: medium;
+    		color: #FFFFFF;
+		}
 	}
 
 }

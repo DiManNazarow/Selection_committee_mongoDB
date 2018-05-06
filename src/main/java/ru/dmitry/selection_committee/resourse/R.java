@@ -46,6 +46,12 @@ public class R {
         public static final String NAME_HINT = "Наименование";
         public static final String CODE_HINT = "Код специальности";
 
+        public static final String SHORT_NAME = "Аббревиатура";
+        public static final String FULL_NAME = "Полное название";
+        public static final String CITY = "Город";
+        public static final String STREET = "Улица";
+        public static final String HOUSE = "Дом/строение*";
+
         public static final String PERSONAL_DATA = "Персональные данные";
         public static final String FIRST_NAME = "Имя*";
         public static final String SECOND_NAME = "Фамилия*";
@@ -53,8 +59,6 @@ public class R {
         public static final String DATE_BIRTH = "Дата рождения*";
         public static final String PASPORT_NUMBER = "Номер паспорта*";
         public static final String PHONE = "Номер телефона*";
-        public static final String CITY = "Город*";
-        public static final String STREET = "Улица*";
         public static final String APARTMENT = "Дом*";
         public static final String FLAT = "Квартира (при наличии)";
         public static final String STUDY_DATA = "Учебные данные";
@@ -65,6 +69,7 @@ public class R {
         public static final String FILTERS = "Фильтры";
         public static final String CLEAR_FILTERS = "Сбросить все";
         public static final String CITY_FILTER = "Город";
+        public static final String APPLY_FILTERS = "Применить фильтры";
 
         public static class Errors {
             public static final String EMPTY_FIELD = "Поле не заполнено";

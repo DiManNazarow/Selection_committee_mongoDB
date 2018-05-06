@@ -1,4 +1,4 @@
-package ru.dmitry.selection_committee.gui.screens.list;
+package ru.dmitry.selection_committee.gui.screens.list.filters;
 
 import com.vaadin.data.HasValue;
 import com.vaadin.ui.Label;
@@ -17,6 +17,7 @@ public abstract class FilterItem extends VerticalLayout {
         this.title = new Label(title);
         this.filter = new TextField();
         setSpacing(false);
+        setup();
     }
 
     protected void setup(){
@@ -26,6 +27,7 @@ public abstract class FilterItem extends VerticalLayout {
             filterText = valueChangeEvent.getValue();
             onFilterTextChanged(filterText);
         });
+        addComponents(title, filter);
     }
 
     protected abstract void onFilterTextChanged(String text);
@@ -33,4 +35,10 @@ public abstract class FilterItem extends VerticalLayout {
     public String getFilterText() {
         return filterText;
     }
+
+    public void clear(){
+        filter.clear();
+        filterText = null;
+    }
+
 }

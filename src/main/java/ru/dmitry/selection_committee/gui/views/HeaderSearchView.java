@@ -8,6 +8,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.TextField;
 import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
+import ru.dmitry.selection_committee.utils.AppTextUtils;
 
 public class HeaderSearchView extends CustomLayout {
 
@@ -43,9 +44,9 @@ public class HeaderSearchView extends CustomLayout {
         search.addStyleName("v-textfield-header_search");
         search.addValueChangeListener((HasValue.ValueChangeListener<String>) valueChangeEvent -> {
             searchQuery = valueChangeEvent.getValue();
-            if (searchQueryChangeListener != null){
-                searchQueryChangeListener.onSearchQueryChange(searchQuery);
-            }
+//            if (searchQueryChangeListener != null){
+//                searchQueryChangeListener.onSearchQueryChange(searchQuery);
+//            }
         });
         image = new Image(null, new ThemeResource(SEARCH_ICON_PATH));
         image.setHeight(28, Unit.PIXELS);

@@ -14,4 +14,8 @@ public interface InstitutionService {
 
     Institution findByFullName(String fullName);
 
+    List<Institution> filterByShortNameOrFullName(String name);
+
+    List<Institution> filterByCity(String city);
+
 }
