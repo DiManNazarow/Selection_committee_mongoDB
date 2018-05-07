@@ -20,6 +20,9 @@ public class EnrolleProfileScreen extends CustomLayoutScreen {
     @Override
     protected void addComponents() {
 
+        HeaderProfileView headerProfileView = new HeaderProfileView();
+        addComponent(headerProfileView, "profile_header_layout");
+
         Image avatar = new Image(null, new ThemeResource("img/person-flat.png"));
         avatar.setHeight(135, Unit.PIXELS);
         avatar.setWidth(135, Unit.PIXELS);
@@ -34,6 +37,12 @@ public class EnrolleProfileScreen extends CustomLayoutScreen {
         deleteButton.addStyleName("v-button-delete-avatar");
         //deleteButton.addStyleName("v-button-caption-delete");
         addComponent(deleteButton, "delete_button");
+
+        InitialsView initialsView = new InitialsView();
+        addComponent(initialsView,"initials");
+
+        DateBirthPickerView dateBirthPickerView = new DateBirthPickerView();
+        addComponent(dateBirthPickerView, "date_birth");
 
         Label personalDataTitle = new Label(R.Strings.PERSONAL_DATA);
         personalDataTitle.addStyleName("v-personal-data-title");

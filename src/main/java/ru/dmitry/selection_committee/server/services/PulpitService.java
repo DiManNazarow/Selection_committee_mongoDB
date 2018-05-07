@@ -14,4 +14,12 @@ public interface PulpitService {
 
     Pulpit findByFullName(String fullName);
 
+    List<Pulpit> findByName(String name);
+
+    List<Pulpit> findByInstitution(String institution);
+
+    List<Pulpit> findByDepartment(String department);
+
+    List<Pulpit> findByInstitutionAndDepartment(String institution, String department);
+
 }

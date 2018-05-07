@@ -52,11 +52,14 @@ public class R {
         public static final String STREET = "Улица";
         public static final String HOUSE = "Дом/строение*";
 
+        public static final String ENROLLE = "Абитуриент";
+
         public static final String PERSONAL_DATA = "Персональные данные";
         public static final String FIRST_NAME = "Имя*";
         public static final String SECOND_NAME = "Фамилия*";
         public static final String PATRONYMIC = "Отчество*";
         public static final String DATE_BIRTH = "Дата рождения*";
+        public static final String DATE_BIRTH_TITLE = "Дата рождения";
         public static final String PASPORT_NUMBER = "Номер паспорта*";
         public static final String PHONE = "Номер телефона*";
         public static final String APARTMENT = "Дом*";

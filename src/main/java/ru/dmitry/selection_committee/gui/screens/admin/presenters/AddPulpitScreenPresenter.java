@@ -55,7 +55,7 @@ public class AddPulpitScreenPresenter extends BasePresenter<AddScreenView> {
         Pulpit pulpit = new Pulpit();
         pulpit.setShortName(shortName);
         pulpit.setFullName(fullName);
-        pulpit.setDepartmentId(department.getId());
+        pulpit.setDepartment(department);
         String id = pulpitService.insert(pulpit);
         if (!AppTextUtils.isTextEmpty(id)){
             pulpit.setId(id);

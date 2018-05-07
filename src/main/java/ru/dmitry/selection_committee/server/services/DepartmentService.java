@@ -14,4 +14,8 @@ public interface DepartmentService {
 
     Department findByFullName(String fullName);
 
+    List<Department> findByInstitutionName(String name);
+
+    List<Department> findByName(String name);
+
 }

@@ -32,6 +32,7 @@ public class InputView<I extends TextField> extends VerticalLayout implements Vi
 
     private void init(String hint){
         setMargin(false);
+        setSpacing(false);
         inputField.setWidth("100%");
         inputField.setPlaceholder(hint);
         inputField.addValueChangeListener(event -> {

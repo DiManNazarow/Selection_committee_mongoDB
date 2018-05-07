@@ -96,8 +96,10 @@ public class AuthorizationScreen extends CustomLayoutScreen implements AuthScree
     }
 
     private void onRegisterButtonClick(Button.ClickEvent clickEvent){
-        RegistrationScreen registrationScreen = new RegistrationScreen(screenNavigator, screenNavigator.getUserServices());
-        screenNavigator.openScreen(registrationScreen.getUrl(), registrationScreen);
+        EnrolleProfileScreen enrolleProfileScreen = new EnrolleProfileScreen(screenNavigator);
+        screenNavigator.openScreen(enrolleProfileScreen.getUrl(), enrolleProfileScreen);
+//        RegistrationScreen registrationScreen = new RegistrationScreen(screenNavigator, screenNavigator.getUserServices());
+//        screenNavigator.openScreen(registrationScreen.getUrl(), registrationScreen);
     }
 
     @Override

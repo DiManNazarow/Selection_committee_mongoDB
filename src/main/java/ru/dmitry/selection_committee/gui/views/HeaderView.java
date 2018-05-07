@@ -10,9 +10,9 @@ import java.util.List;
 
 public abstract class HeaderView extends HorizontalLayout {
 
-    private Label title;
+    protected Label title;
 
-    private HorizontalLayout actionViewContainer;
+    protected HorizontalLayout actionViewContainer;
 
     public HeaderView(){
         setSpacing(false);
@@ -20,9 +20,9 @@ public abstract class HeaderView extends HorizontalLayout {
         setup();
     }
 
-    private void setup(){
+    protected void setup(){
         title = new Label(R.Strings.PENGTU);
-        title.addStyleName("v-label-heder_penzgtu");
+        title.addStyleName("v-label-header_penzgtu");
         addComponent(title);
         setComponentAlignment(title, Alignment.MIDDLE_LEFT);
         actionViewContainer = new HorizontalLayout();

@@ -2,10 +2,12 @@ package ru.dmitry.selection_committee.gui.screens.admin;
 
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Image;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
+import ru.dmitry.selection_committee.gui.screens.list.DepartmentListScreen;
 import ru.dmitry.selection_committee.gui.screens.list.InstitutionListScreen;
+import ru.dmitry.selection_committee.gui.screens.list.PulpitListScreen;
+import ru.dmitry.selection_committee.gui.screens.list.SpecialityListScreen;
 import ru.dmitry.selection_committee.gui.views.ImageButton;
 import ru.dmitry.selection_committee.resourse.R;
 
@@ -53,12 +55,15 @@ public class AdminMainPageScreen extends CustomLayoutScreen {
         addComponent(universityListButton, "university_list");
 
         ImageButton departmentListButton = new ImageButton(R.Strings.DEPARTMENT_LIST, new ThemeResource("img/ic_list_white_48px.svg"));
+        departmentListButton.setImageButtonClickListener(this::onListDepartmentClick);
         addComponent(departmentListButton, "department_list");
 
         ImageButton pulpitListButton = new ImageButton(R.Strings.PULPIT_LIST, new ThemeResource("img/ic_list_white_48px.svg"));
+        pulpitListButton.setImageButtonClickListener(this::onListPulpitClick);
         addComponent(pulpitListButton, "pulpit_list");
 
         ImageButton specialityListButton = new ImageButton(R.Strings.SPECIALITY_LIST, new ThemeResource("img/ic_list_white_48px.svg"));
+        specialityListButton.setImageButtonClickListener(this::onListSpecialityClick);
         addComponent(specialityListButton, "speciality_list");
 
     }
@@ -84,8 +89,23 @@ public class AdminMainPageScreen extends CustomLayoutScreen {
     }
 
     private void onListInstitutionClick(){
-        InstitutionListScreen institutionListScreen = new InstitutionListScreen(screenNavigator);
-        screenNavigator.openScreen(institutionListScreen.getUrl(), institutionListScreen);
+        InstitutionListScreen institutionInstitutionListScreen = new InstitutionListScreen(screenNavigator);
+        screenNavigator.openScreen(institutionInstitutionListScreen.getUrl(), institutionInstitutionListScreen);
+    }
+
+    private void onListDepartmentClick(){
+        DepartmentListScreen departmentListScreen = new DepartmentListScreen(screenNavigator);
+        screenNavigator.openScreen(departmentListScreen.getUrl(), departmentListScreen);
+    }
+
+    private void onListPulpitClick(){
+        PulpitListScreen pulpitListScreen = new PulpitListScreen(screenNavigator);
+        screenNavigator.openScreen(pulpitListScreen.getUrl(), pulpitListScreen);
+    }
+
+    private void onListSpecialityClick(){
+        SpecialityListScreen specialityListScreen = new SpecialityListScreen(screenNavigator);
+        screenNavigator.openScreen(specialityListScreen.getUrl(), specialityListScreen);
     }
 
     @Override

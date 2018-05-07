@@ -5,13 +5,19 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
-public abstract class FilterItem extends VerticalLayout {
+public class FilterItem extends VerticalLayout {
 
     private Label title;
 
     private TextField filter;
 
     private String filterText;
+
+    private OnFilterValueTextChangedListener filterValueTextChangedListener;
+
+    public interface OnFilterValueTextChangedListener {
+        void onFilterValueChanged(String text);
+    }
 
     public FilterItem(String title){
         this.title = new Label(title);
@@ -30,7 +36,11 @@ public abstract class FilterItem extends VerticalLayout {
         addComponents(title, filter);
     }
 
-    protected abstract void onFilterTextChanged(String text);
+    protected void onFilterTextChanged(String text){
+        if (filterValueTextChangedListener != null){
+            filterValueTextChangedListener.onFilterValueChanged(text);
+        }
+    }
 
     public String getFilterText() {
         return filterText;
@@ -41,4 +51,7 @@ public abstract class FilterItem extends VerticalLayout {
         filterText = null;
     }
 
+    public void setFilterValueTextChangedListener(OnFilterValueTextChangedListener filterValueTextChangedListener) {
+        this.filterValueTextChangedListener = filterValueTextChangedListener;
+    }
 }

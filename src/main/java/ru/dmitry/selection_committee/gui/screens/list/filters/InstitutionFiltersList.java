@@ -1,8 +1,10 @@
 package ru.dmitry.selection_committee.gui.screens.list.filters;
 
+import ru.dmitry.selection_committee.resourse.R;
+
 public class InstitutionFiltersList extends FiltersView {
 
-    private CityFilter cityFilter;
+    private FilterItem cityFilter;
 
     private OnInstitutionFilterStateListener institutionFilterStateListener;
 
@@ -14,8 +16,8 @@ public class InstitutionFiltersList extends FiltersView {
     @Override
     protected FilterItem[] getFilters() {
 
-        cityFilter = new CityFilter();
-        cityFilter.setCityFilterTextChangedListener(text -> {
+        cityFilter = new FilterItem(R.Strings.CITY);
+        cityFilter.setFilterValueTextChangedListener(text -> {
 
         });
 

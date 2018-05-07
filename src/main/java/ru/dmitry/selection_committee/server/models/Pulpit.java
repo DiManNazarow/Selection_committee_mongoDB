@@ -28,7 +28,8 @@ public class Pulpit {
      * Идентификатор факультета
      * {@link Department}
      */
-    private String departmentId;
+    @DBRef
+    private Department department;
 
     @DBRef
     private List<Speciality> specialities;
@@ -65,19 +66,19 @@ public class Pulpit {
         this.description = description;
     }
 
-    public String getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId;
-    }
-
     public List<Speciality> getSpecialities() {
         return specialities;
     }
 
     public void setSpecialities(List<Speciality> specialities) {
         this.specialities = specialities;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }

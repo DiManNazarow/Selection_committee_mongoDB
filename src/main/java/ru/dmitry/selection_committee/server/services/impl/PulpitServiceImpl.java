@@ -7,6 +7,7 @@ import ru.dmitry.selection_committee.server.services.PulpitService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PulpitServiceImpl implements PulpitService {
 
@@ -33,6 +34,31 @@ public class PulpitServiceImpl implements PulpitService {
     @Override
     public Pulpit findByFullName(String fullName) {
         return pulpitRepository.findByFullName(fullName);
+    }
+
+    @Override
+    public List<Pulpit> findByName(String name) {
+        return pulpitRepository.findByShortNameContainingOrFullNameContaining(name, name);
+    }
+
+    @Override
+    public List<Pulpit> findByInstitution(String institution) {
+        return pulpitRepository.findAll().stream().filter(pulpit ->
+                pulpit.getDepartment().getInstitution().getFullName().contains(institution) ||
+                        pulpit.getDepartment().getInstitution().getShortName().contains(institution)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Pulpit> findByDepartment(String department) {
+        return pulpitRepository.findAll().stream().filter(pulpit ->
+                pulpit.getDepartment().getFullName().contains(department) || pulpit.getDepartment().getShortName().contains(department)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Pulpit> findByInstitutionAndDepartment(String institution, String department) {
+        return pulpitRepository.findAll().stream().filter(pulpit ->
+                (pulpit.getDepartment().getInstitution().getShortName().contains(institution) || pulpit.getDepartment().getInstitution().getFullName().contains(institution)) &&
+                        (pulpit.getDepartment().getShortName().contains(department) || pulpit.getDepartment().getFullName().contains(department))).collect(Collectors.toList());
     }
 
 }

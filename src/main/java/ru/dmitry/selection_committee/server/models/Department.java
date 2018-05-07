@@ -28,7 +28,8 @@ public class Department {
      * Идентификатор учебного заведения
      * {@link Institution}
      */
-    private String institutionId;
+    @DBRef
+    private Institution institution;
 
     @DBRef
     private List<Pulpit> pulpits;
@@ -65,19 +66,19 @@ public class Department {
         this.description = description;
     }
 
-    public String getInstitutionId() {
-        return institutionId;
-    }
-
-    public void setInstitutionId(String institutionId) {
-        this.institutionId = institutionId;
-    }
-
     public List<Pulpit> getPulpits() {
         return pulpits;
     }
 
     public void setPulpits(List<Pulpit> pulpits) {
         this.pulpits = pulpits;
+    }
+
+    public Institution getInstitution() {
+        return institution;
+    }
+
+    public void setInstitution(Institution institution) {
+        this.institution = institution;
     }
 }

@@ -15,4 +15,21 @@ public interface SpecialityService {
 
     Speciality findByName(String name);
 
+    List<Speciality> getSpecialitiesFilteredByName(String name);
+
+    List<Speciality> getSpecialitiesFilteredByInstitutionAndDepartmentAndPulpit(String institution, String department, String pulpit);
+
+    List<Speciality> getSpecialitiesFilteredByInstitutionAndDepartment(String institution, String department);
+
+    List<Speciality> getSpecialitiesFilteredByInstitutionAndPulpit(String institution, String pulpit);
+
+    List<Speciality> getSpecialitiesFilteredByDepartmentAndPulpit(String department, String pulpit);
+
+    List<Speciality> getSpecialitiesFilteredByInstitution(String institution);
+
+    List<Speciality> getSpecialitiesFilteredByDepartment(String department);
+
+    List<Speciality> getSpecialitiesFilteredByPulpit(String pulpit);
+
+
 }

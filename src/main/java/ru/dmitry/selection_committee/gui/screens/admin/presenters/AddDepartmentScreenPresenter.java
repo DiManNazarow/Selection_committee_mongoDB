@@ -57,7 +57,8 @@ public class AddDepartmentScreenPresenter extends BasePresenter<AddScreenView> {
         Department department = new Department();
         department.setShortName(shortName);
         department.setFullName(fullName);
-        department.setInstitutionId(institution.id);
+        department.setInstitution(institution);
+        department.setInstitution(institution);
         String id = departmentService.insert(department);
         if (!AppTextUtils.isTextEmpty(id)){
             department.setId(id);

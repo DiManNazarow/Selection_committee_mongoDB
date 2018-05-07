@@ -1,0 +1,64 @@
+package ru.dmitry.selection_committee.gui.screens.profile;
+
+import com.vaadin.data.HasValue;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.DateField;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.VerticalLayout;
+import ru.dmitry.selection_committee.resourse.R;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class DateBirthPickerView extends VerticalLayout {
+
+    private final String DATE_FORMAT = "dd.MM.yyyy";
+
+    private final String PLACEHOLDER_DATE_FORMAT = "день.месяц.год";
+
+    private Label title;
+
+    private DateField dateField;
+
+    private String date;
+
+    private OnDateChangeListener dateChangeListener;
+
+    public interface OnDateChangeListener {
+        void onDateChange(String date);
+    }
+
+    public DateBirthPickerView(){
+        setMargin(false);
+        setWidth("80%");
+        setup();
+    }
+
+    private void setup(){
+        title = new Label(R.Strings.DATE_BIRTH_TITLE);
+        title.addStyleName("v-personal-data-title");
+
+        dateField = new DateField();
+        dateField.setDateFormat(DATE_FORMAT);
+        dateField.setPlaceholder(PLACEHOLDER_DATE_FORMAT);
+        dateField.setValue(LocalDate.now());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+
+        dateField.addValueChangeListener((HasValue.ValueChangeListener<LocalDate>) valueChangeEvent -> {
+            if (valueChangeEvent.getValue() != null){
+                date = valueChangeEvent.getValue().format(formatter);
+            }
+            if (dateChangeListener != null){
+                dateChangeListener.onDateChange(date);
+            }
+        });
+        addComponents(title, dateField);
+        setComponentAlignment(title, Alignment.TOP_CENTER);
+        setComponentAlignment(dateField, Alignment.MIDDLE_CENTER);
+    }
+
+    public void setDateChangeListener(OnDateChangeListener dateChangeListener) {
+        this.dateChangeListener = dateChangeListener;
+    }
+}

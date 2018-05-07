@@ -1,5 +1,7 @@
 package ru.dmitry.selection_committee.server.models;
 
+import org.springframework.data.mongodb.core.mapping.DBRef;
+
 import java.util.List;
 
 /**
@@ -41,6 +43,7 @@ public class Enrollee extends User {
     /**
      * Список специальностей
      */
+    @DBRef
     private List<Speciality> specialities;
 
     public Enrollee(){

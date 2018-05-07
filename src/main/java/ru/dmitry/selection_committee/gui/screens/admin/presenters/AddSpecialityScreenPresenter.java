@@ -55,7 +55,7 @@ public class AddSpecialityScreenPresenter extends BasePresenter<AddSpecialityScr
         Speciality speciality = new Speciality();
         speciality.setName(name);
         speciality.setCode(code);
-        speciality.setPulpitId(pulpit.getId());
+        speciality.setPulpit(pulpit);
         String id = specialityService.insert(speciality);
         if (!AppTextUtils.isTextEmpty(id)){
             speciality.setId(id);

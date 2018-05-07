@@ -1,6 +1,7 @@
 package ru.dmitry.selection_committee.server.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 /**
  * Модель "Специальность"
@@ -25,7 +26,8 @@ public class Speciality {
      * Идентификатор кафедры
      * {@link Pulpit}
      */
-    private String pulpitId;
+    @DBRef
+    private Pulpit pulpit;
 
     public String getId() {
         return id;
@@ -59,11 +61,12 @@ public class Speciality {
         this.description = description;
     }
 
-    public String getPulpitId() {
-        return pulpitId;
+    public Pulpit getPulpit() {
+        return pulpit;
     }
 
-    public void setPulpitId(String pulpitId) {
-        this.pulpitId = pulpitId;
+    public void setPulpit(Pulpit pulpit) {
+        this.pulpit = pulpit;
     }
+
 }

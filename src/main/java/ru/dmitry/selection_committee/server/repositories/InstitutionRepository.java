@@ -11,6 +11,6 @@ public interface InstitutionRepository extends MongoRepository<Institution, Stri
 
     List<Institution> findByCityContaining(String city);
 
-    List<Institution> findByFullNameContainingOrShortNameContaining(String shortNane, String fullName);
+    List<Institution> findByFullNameContainingOrShortNameContaining(String shortName, String fullName);
 
 }
