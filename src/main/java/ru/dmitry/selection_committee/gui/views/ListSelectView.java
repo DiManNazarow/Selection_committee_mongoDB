@@ -2,6 +2,7 @@ package ru.dmitry.selection_committee.gui.views;
 
 import com.vaadin.data.HasValue;
 import com.vaadin.shared.ui.MarginInfo;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.ListSelect;
 import com.vaadin.ui.VerticalLayout;
@@ -47,6 +48,8 @@ public class ListSelectView extends VerticalLayout {
         }
         setMargin(false);
         addComponents(label, listSelect);
+        setComponentAlignment(label, Alignment.TOP_CENTER);
+        setComponentAlignment(listSelect, Alignment.MIDDLE_CENTER);
     }
 
     private void onListItemSelected(HasValue.ValueChangeEvent<Set<String>> valueChangeEvent){

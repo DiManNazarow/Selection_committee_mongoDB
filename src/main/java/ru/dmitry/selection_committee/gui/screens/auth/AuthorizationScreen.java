@@ -61,6 +61,7 @@ public class AuthorizationScreen extends CustomLayoutScreen implements AuthScree
         addComponent(signIn, "sign_in");
 
         loginField = new LoginInputView(R.Strings.LOGIN);
+        loginField.addInputStyle("v-textfield-login");
         loginField.setWidth("80%");
 
         loginField.setTextChangeListener(text -> {
@@ -71,6 +72,7 @@ public class AuthorizationScreen extends CustomLayoutScreen implements AuthScree
         addComponent(loginField, "login");
 
         passwordFiled = new PasswordInputView(R.Strings.PASSWORD);
+        passwordFiled.addInputStyle("v-textfield-login");
         passwordFiled.setWidth("80%");
 
         passwordFiled.setTextChangeListener(text -> {

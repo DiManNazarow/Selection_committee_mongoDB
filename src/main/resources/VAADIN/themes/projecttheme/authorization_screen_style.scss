@@ -66,7 +66,7 @@ $v-focus-style: none;
 		color: #FFFFFF;
 	}
 
-	.v-textfield:focus {
+	.v-textfield-login:focus {
 		color: #FFFFFF;
 		outline: none;
 		border: none;
@@ -78,7 +78,7 @@ $v-focus-style: none;
     	border-right: 0px solid white;	
 	}
 
-	.v-textfield {
+	.v-textfield-login {
 		background-color: #0097DE;
 		color: #FFFFFF;
 		-webkit-border-image: none;

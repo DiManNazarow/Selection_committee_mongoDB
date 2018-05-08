@@ -1,5 +1,7 @@
 package ru.dmitry.selection_committee.gui.views;
 
+import com.vaadin.event.ContextClickEvent;
+import com.vaadin.event.FieldEvents;
 import com.vaadin.navigator.View;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
@@ -21,8 +23,16 @@ public class InputView<I extends TextField> extends VerticalLayout implements Vi
 
     private OnTextChangeListener textChangeListener;
 
-    public interface OnTextChangeListener{
+    private OnFocusChangeListener focusChangeListener;
+
+    private boolean isFocus = false;
+
+    public interface OnTextChangeListener {
         void onTextChanged(CharSequence charSequence);
+    }
+
+    public interface OnFocusChangeListener {
+        void onFocusChangeListener(boolean hasFocus);
     }
 
     public InputView(I inputField, String hint){
@@ -35,6 +45,20 @@ public class InputView<I extends TextField> extends VerticalLayout implements Vi
         setSpacing(false);
         inputField.setWidth("100%");
         inputField.setPlaceholder(hint);
+
+        inputField.addFocusListener(new FieldEvents.FocusListener() {
+            @Override
+            public void focus(FieldEvents.FocusEvent focusEvent) {
+                changeFocusState(true);
+            }
+        });
+        inputField.addBlurListener(new FieldEvents.BlurListener() {
+            @Override
+            public void blur(FieldEvents.BlurEvent blurEvent) {
+                changeFocusState(false);
+            }
+        });
+
         inputField.addValueChangeListener(event -> {
             text = event.getValue();
             if (textChangeListener != null){
@@ -45,6 +69,15 @@ public class InputView<I extends TextField> extends VerticalLayout implements Vi
         errorTextLabel.setWidth("100%");
         errorTextLabel.addStyleName("v-label-auth_error");
         addComponents(inputField, errorTextLabel);
+    }
+
+    private void changeFocusState(boolean newState){
+        if (isFocus != newState){
+            if (focusChangeListener != null){
+                focusChangeListener.onFocusChangeListener(newState);
+            }
+            isFocus = newState;
+        }
     }
 
     public void setTextChangeListener(OnTextChangeListener textChangeListener) {
@@ -88,4 +121,7 @@ public class InputView<I extends TextField> extends VerticalLayout implements Vi
         inputField.removeStyleName(name);
     }
 
+    public void setFocusChangeListener(OnFocusChangeListener focusChangeListener) {
+        this.focusChangeListener = focusChangeListener;
+    }
 }

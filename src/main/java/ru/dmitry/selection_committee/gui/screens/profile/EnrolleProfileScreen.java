@@ -1,14 +1,13 @@
 package ru.dmitry.selection_committee.gui.screens.profile;
 
 import com.vaadin.server.ThemeResource;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Image;
-import com.vaadin.ui.Label;
+import com.vaadin.ui.*;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
+import ru.dmitry.selection_committee.gui.views.ListWindow;
 import ru.dmitry.selection_committee.resourse.R;
 
-public class EnrolleProfileScreen extends CustomLayoutScreen {
+public class EnrolleProfileScreen extends CustomLayoutScreen implements StudyInfoView.OnActionClickListener {
 
     private final String URL = "enrolle_profile";
 
@@ -44,6 +43,23 @@ public class EnrolleProfileScreen extends CustomLayoutScreen {
         DateBirthPickerView dateBirthPickerView = new DateBirthPickerView();
         addComponent(dateBirthPickerView, "date_birth");
 
+        PassportView passportView = new PassportView();
+        PhoneNumberView phoneNumberView = new PhoneNumberView();
+
+        HorizontalLayout horizontalLayout = new HorizontalLayout();
+        horizontalLayout.setSizeFull();
+        horizontalLayout.setMargin(false);
+        horizontalLayout.setSpacing(false);
+        horizontalLayout.addComponents(passportView, phoneNumberView);
+        addComponent(horizontalLayout, "documents");
+
+        AddressView addressView = new AddressView();
+        addComponent(addressView, "address");
+
+        StudyInfoView studyInfoView = new StudyInfoView(StudyInfoView.State.EDIT_ADMIN);
+        studyInfoView.setActionClickListener(this);
+        addComponent(studyInfoView, "study_data");
+
         Label personalDataTitle = new Label(R.Strings.PERSONAL_DATA);
         personalDataTitle.addStyleName("v-personal-data-title");
         addComponent(personalDataTitle, "personal_data_title");
@@ -57,5 +73,30 @@ public class EnrolleProfileScreen extends CustomLayoutScreen {
     @Override
     public String getUrl() {
         return URL;
+    }
+
+    private boolean isWindowOpen = false;
+
+    @Override
+    public void onInstitutionFieldClickListener() {
+        //TODO change
+        if (!isWindowOpen){
+            ListWindow listWindow = new ListWindow("Выберите учебное заведение", "Список учебных заведений");
+            listWindow.addDataToList(screenNavigator.getInstitutionService().getInstitutionsNames());
+            listWindow.setListItemSelectListener(new ListWindow.OnListItemSelectListener() {
+                @Override
+                public void onListItemSelected(String name) {
+                    Notification.show(name);
+                }
+            });
+            listWindow.addCloseListener(new Window.CloseListener() {
+                @Override
+                public void windowClose(Window.CloseEvent closeEvent) {
+                    isWindowOpen = false;
+                }
+            });
+            isWindowOpen = true;
+            UI.getCurrent().addWindow(listWindow);
+        }
     }
 }

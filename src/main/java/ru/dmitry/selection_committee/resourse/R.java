@@ -12,6 +12,7 @@ public class R {
         public static final String AUTH_CONTROL = "Или управляйте ее ходом если вы администратор";
         public static final String REGISTRATION_BUTTON_TEXT = "ЗАРЕГИСТРИРОВАТЬСЯ";
         public static final String SIGN_IN = "Войти в аккаунт";
+        public static final String SIGN_OUT = "Выйти";
         public static final String LOGIN = "Логин";
         public static final String PASSWORD = "Пароль*";
         public static final String AUTH = "<font color=\"#0097DE\">ВОЙТИ</font>";
@@ -33,9 +34,11 @@ public class R {
         public static final String SPECIALITY_LIST = "Список специальностей";
 
         public static final String INSTITUTION = "Учебное заведение";
+        public static final String INSTITUTION_HINT = "Учебное заведение*";
         public static final String DEPARTMENT = "Факультет";
         public static final String PULPIT = "Кафедра";
         public static final String SPECIALITY = "Специальность";
+        public static final String SPECIALITY_HINT = "Специальность*";
 
         public static final String SHORT_NAME_HINT = "Аббревиатура*";
         public static final String FULL_NAME_HINT = "Полное название*";
@@ -67,6 +70,7 @@ public class R {
         public static final String STUDY_DATA = "Учебные данные";
         public static final String ATTESTAT_NUMBER = "Номер аттестата*";
         public static final String SCHOOL_NAME = "Название учебного заведения выдавшего атестат*";
+        public static final String STATUS = "Статус";
         public static final String SAVE_OR_UPDATE = "СОХРАНИТЬ & ОБНОВИТЬ";
 
         public static final String FILTERS = "Фильтры";
