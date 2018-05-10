@@ -18,6 +18,8 @@ public class DateBirthPickerView extends VerticalLayout {
 
     private final String PLACEHOLDER_DATE_FORMAT = "день.месяц.год";
 
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+
     private Label title;
 
     private DateField dateField;
@@ -49,8 +51,7 @@ public class DateBirthPickerView extends VerticalLayout {
 
         //dateField.setPlaceholder(PLACEHOLDER_DATE_FORMAT);
         dateField.setValue(LocalDate.now());
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+        date = LocalDate.now().format(formatter);
 
         dateField.addValueChangeListener((HasValue.ValueChangeListener<LocalDate>) valueChangeEvent -> {
             if (valueChangeEvent.getValue() != null){
@@ -68,4 +69,14 @@ public class DateBirthPickerView extends VerticalLayout {
     public void setDateChangeListener(OnDateChangeListener dateChangeListener) {
         this.dateChangeListener = dateChangeListener;
     }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date){
+        dateField.setValue(LocalDate.parse(date, formatter));
+        this.date = LocalDate.parse(date, formatter).format(formatter);
+    }
+
 }

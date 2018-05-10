@@ -49,8 +49,8 @@ public class HeaderSearchView extends CustomLayout {
 //            }
         });
         image = new Image(null, new ThemeResource(SEARCH_ICON_PATH));
-        image.setHeight(28, Unit.PIXELS);
-        image.setWidth(60, Unit.PIXELS);
+        image.setHeight(18, Unit.PIXELS);
+        image.setWidth(50, Unit.PIXELS);
         image.addStyleName("v-image-background");
         image.addClickListener((MouseEvents.ClickListener) clickEvent -> {
             if (searchIconClickListener != null){

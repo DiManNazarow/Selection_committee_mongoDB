@@ -17,6 +17,15 @@ public class AddressView extends HorizontalLayout {
 
     private InputView<TextField> flatInput;
 
+    private AddressChangeListener addressChangeListener;
+
+    public interface AddressChangeListener {
+        void onCityChanged(CharSequence text);
+        void onStreetChanged(CharSequence text);
+        void onHouseChanged(CharSequence text);
+        void onFlatChanged(CharSequence text);
+    }
+
     public AddressView(){
         setSpacing(false);
         setSizeFull();
@@ -27,18 +36,22 @@ public class AddressView extends HorizontalLayout {
 
         cityInput = new InputView<>(new TextField(), R.Strings.CITY_HINT);
         cityInput.addInputStyle("v-textfield-profile");
+        cityInput.setTextChangeListener(this::onCityChanged);
         cityInput.setWidth("100%");
 
         streetInput = new InputView<>(new TextField(), R.Strings.STREET_HINT);
         streetInput.addInputStyle("v-textfield-profile");
+        streetInput.setTextChangeListener(this::onStreetChanged);
         streetInput.setWidth("100%");
 
         houseInput = new InputView<>(new TextField(), R.Strings.HOUSE_HINT);
         houseInput.addInputStyle("v-textfield-profile");
+        houseInput.setTextChangeListener(this::onHouseChanged);
         houseInput.setWidth("100%");
 
         flatInput = new InputView<>(new TextField(), R.Strings.FLAT);
         flatInput.addInputStyle("v-textfield-profile");
+        flatInput.setTextChangeListener(this::onFlatChanged);
         flatInput.setWidth("100%");
 
         VerticalLayout verticalLayout = new VerticalLayout();
@@ -60,4 +73,47 @@ public class AddressView extends HorizontalLayout {
 
     }
 
+    private void onCityChanged(CharSequence text){
+        if (addressChangeListener != null){
+            addressChangeListener.onCityChanged(text);
+        }
+    }
+
+    private void onStreetChanged(CharSequence text){
+        if (addressChangeListener != null){
+            addressChangeListener.onStreetChanged(text);
+        }
+    }
+
+    private void onHouseChanged(CharSequence text){
+        if (addressChangeListener != null){
+            addressChangeListener.onHouseChanged(text);
+        }
+    }
+
+    private void onFlatChanged(CharSequence text){
+        if (addressChangeListener != null){
+            addressChangeListener.onFlatChanged(text);
+        }
+    }
+
+    public void setAddressChangeListener(AddressChangeListener addressChangeListener) {
+        this.addressChangeListener = addressChangeListener;
+    }
+
+    public InputView<TextField> getCityInput() {
+        return cityInput;
+    }
+
+    public InputView<TextField> getStreetInput() {
+        return streetInput;
+    }
+
+    public InputView<TextField> getHouseInput() {
+        return houseInput;
+    }
+
+    public InputView<TextField> getFlatInput() {
+        return flatInput;
+    }
 }

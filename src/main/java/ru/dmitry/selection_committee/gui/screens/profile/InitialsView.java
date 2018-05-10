@@ -84,4 +84,16 @@ public class InitialsView extends VerticalLayout {
     public String getPatronymic() {
         return patronymic;
     }
+
+    public InputView<TextField> getFirstNameInput() {
+        return firstNameInput;
+    }
+
+    public InputView<TextField> getSecondNameInput() {
+        return secondNameInput;
+    }
+
+    public InputView<TextField> getPatronymicInput() {
+        return patronymicInput;
+    }
 }

@@ -8,7 +8,7 @@ import ru.dmitry.selection_committee.resourse.R;
 
 public class HeaderProfileView extends HeaderView {
 
-    private Label title;
+    protected Label title;
 
     public HeaderProfileView(){
         setSizeFull();

@@ -5,18 +5,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.admin.AdminMainPageScreen;
 import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
+import ru.dmitry.selection_committee.gui.screens.profile.EditEnrolleProfileScreen;
 import ru.dmitry.selection_committee.gui.screens.profile.EnrolleProfileScreen;
+import ru.dmitry.selection_committee.gui.screens.profile.State;
+import ru.dmitry.selection_committee.gui.screens.registration.AdminRegistrationScreen;
 import ru.dmitry.selection_committee.gui.screens.registration.RegistrationScreen;
 import ru.dmitry.selection_committee.gui.views.LoginInputView;
 import ru.dmitry.selection_committee.gui.views.PasswordInputView;
 import ru.dmitry.selection_committee.resourse.R;
+import ru.dmitry.selection_committee.server.models.Admin;
+import ru.dmitry.selection_committee.server.models.Enrollee;
 import ru.dmitry.selection_committee.server.services.UserServices;
 
 public class AuthorizationScreen extends CustomLayoutScreen implements AuthScreenView {
 
-    private final String URL = "/";
-
-    private UserServices userServices;
+    public static final String URL = "/";
 
     private AuthScreenPresenter authScreenPresenter;
 
@@ -31,12 +34,12 @@ public class AuthorizationScreen extends CustomLayoutScreen implements AuthScree
     @Autowired
     public AuthorizationScreen(ScreenNavigator screenNavigator, UserServices userServices) {
         super(screenNavigator, "authorization_screen");
-        this.userServices = userServices;
-        authScreenPresenter = new AuthScreenPresenter(userServices,this);
+        authScreenPresenter = new AuthScreenPresenter(screenNavigator.getUserServices(),this);
         setSizeFull();
     }
 
-    protected void addComponents() {
+    @Override
+    protected void setupComponents(Object object) {
 
         Label welcome = new Label(R.Strings.AUTH_WELCOME);
         welcome.addStyleName("v-label-welcome");
@@ -98,10 +101,8 @@ public class AuthorizationScreen extends CustomLayoutScreen implements AuthScree
     }
 
     private void onRegisterButtonClick(Button.ClickEvent clickEvent){
-        EnrolleProfileScreen enrolleProfileScreen = new EnrolleProfileScreen(screenNavigator);
-        screenNavigator.openScreen(enrolleProfileScreen.getUrl(), enrolleProfileScreen);
-//        RegistrationScreen registrationScreen = new RegistrationScreen(screenNavigator, screenNavigator.getUserServices());
-//        screenNavigator.openScreen(registrationScreen.getUrl(), registrationScreen);
+        RegistrationScreen registrationScreen = new RegistrationScreen(screenNavigator, State.REGISTER);
+        screenNavigator.openScreen(registrationScreen.getUrl(), registrationScreen);
     }
 
     @Override
@@ -110,14 +111,16 @@ public class AuthorizationScreen extends CustomLayoutScreen implements AuthScree
     }
 
     @Override
-    public void onAuthAdmin() {
+    public void onAuthAdmin(Admin admin) {
+        screenNavigator.setAuthUser(admin);
         AdminMainPageScreen adminMainPageScreen = new AdminMainPageScreen(screenNavigator);
         screenNavigator.openScreen(adminMainPageScreen.getUrl(), adminMainPageScreen);
     }
 
     @Override
-    public void onAuthEnrolle() {
-        EnrolleProfileScreen enrolleProfileScreen = new EnrolleProfileScreen(screenNavigator);
+    public void onAuthEnrolle(Enrollee enrollee) {
+        screenNavigator.setAuthUser(enrollee);
+        EditEnrolleProfileScreen enrolleProfileScreen = new EditEnrolleProfileScreen(screenNavigator, enrollee);
         screenNavigator.openScreen(enrolleProfileScreen.getUrl(), enrolleProfileScreen);
     }
 

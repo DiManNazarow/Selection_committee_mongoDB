@@ -25,6 +25,22 @@ public class Enrollee extends User {
      */
     private String phone;
     /**
+     * Город
+     */
+    private String city;
+    /**
+     * Улица
+     */
+    private String street;
+    /**
+     * Дом
+     */
+    private String house;
+    /**
+     * Квартира
+     */
+    private String flat;
+    /**
      * Номер аттестата
      */
     private String attestatNumber;
@@ -45,6 +61,10 @@ public class Enrollee extends User {
      */
     @DBRef
     private List<Speciality> specialities;
+    /**
+     * Статус обучающегося
+     */
+    private int status = Status.ENTERED.getCode();
 
     public Enrollee(){
         super();
@@ -87,6 +107,38 @@ public class Enrollee extends User {
         this.phone = phone;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getHouse() {
+        return house;
+    }
+
+    public void setHouse(String house) {
+        this.house = house;
+    }
+
+    public String getFlat() {
+        return flat;
+    }
+
+    public void setFlat(String flat) {
+        this.flat = flat;
+    }
+
     public String getAttestatNumber() {
         return attestatNumber;
     }
@@ -125,5 +177,13 @@ public class Enrollee extends User {
 
     public void setSpecialities(List<Speciality> specialities) {
         this.specialities = specialities;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getStatus() {
+        return status;
     }
 }

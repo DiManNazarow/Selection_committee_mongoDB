@@ -61,4 +61,8 @@ public class PassportView extends VerticalLayout {
     public String getNumber() {
         return number;
     }
+
+    public InputView<TextField> getPasportNumberInput() {
+        return pasportNumberInput;
+    }
 }

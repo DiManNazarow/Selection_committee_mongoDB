@@ -13,7 +13,9 @@ public class R {
         public static final String REGISTRATION_BUTTON_TEXT = "ЗАРЕГИСТРИРОВАТЬСЯ";
         public static final String SIGN_IN = "Войти в аккаунт";
         public static final String SIGN_OUT = "Выйти";
-        public static final String LOGIN = "Логин";
+        public static final String LOGIN = "Логин или почта";
+        public static final String LOGIN_HINT_REGISTRATION = "Логин (опционально)";
+        public static final String LOGIN_ADMIN = "Логин *";
         public static final String PASSWORD = "Пароль*";
         public static final String AUTH = "<font color=\"#0097DE\">ВОЙТИ</font>";
         public static final String REGISTRATION = "Регистрация";
@@ -77,6 +79,8 @@ public class R {
         public static final String CLEAR_FILTERS = "Сбросить все";
         public static final String CITY_FILTER = "Город";
         public static final String APPLY_FILTERS = "Применить фильтры";
+
+        public static final String CHOOSE = "Выбрать";
 
         public static class Errors {
             public static final String EMPTY_FIELD = "Поле не заполнено";

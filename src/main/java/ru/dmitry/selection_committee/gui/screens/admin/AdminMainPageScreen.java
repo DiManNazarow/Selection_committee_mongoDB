@@ -8,10 +8,15 @@ import ru.dmitry.selection_committee.gui.screens.list.DepartmentListScreen;
 import ru.dmitry.selection_committee.gui.screens.list.InstitutionListScreen;
 import ru.dmitry.selection_committee.gui.screens.list.PulpitListScreen;
 import ru.dmitry.selection_committee.gui.screens.list.SpecialityListScreen;
+import ru.dmitry.selection_committee.gui.screens.profile.EditEnrolleProfileScreen;
+import ru.dmitry.selection_committee.gui.screens.profile.State;
+import ru.dmitry.selection_committee.gui.screens.registration.RegistrationScreen;
 import ru.dmitry.selection_committee.gui.views.ImageButton;
+import ru.dmitry.selection_committee.gui.views.UserHeaderView;
 import ru.dmitry.selection_committee.resourse.R;
+import ru.dmitry.selection_committee.server.models.Enrollee;
 
-public class AdminMainPageScreen extends CustomLayoutScreen {
+public class AdminMainPageScreen extends CustomLayoutScreen implements UserHeaderView.HeaderActionListener {
 
     private final String URL = "admin_main_page";
 
@@ -21,7 +26,12 @@ public class AdminMainPageScreen extends CustomLayoutScreen {
     }
 
     @Override
-    protected void addComponents() {
+    protected void setupComponents(Object object) {
+
+        UserHeaderView userHeaderView = new UserHeaderView(screenNavigator.getAuthUser());
+        userHeaderView.setSizeFull();
+        userHeaderView.setHeaderActionListener(this);
+        addComponent(userHeaderView, "admin_header");
 
         Button addUniversityButton = new Button(R.Strings.ADD_NEW_UNIVERSITY);
         addUniversityButton.addStyleName("v-button-add");
@@ -45,6 +55,7 @@ public class AdminMainPageScreen extends CustomLayoutScreen {
 
         Button addEnrolleButton = new Button(R.Strings.ADD_NEW_ENTOLLE);
         addEnrolleButton.addStyleName("v-button-add");
+        addEnrolleButton.addClickListener(this::onAddEnrolleButtonClick);
         addComponent(addEnrolleButton, "add_enrolle");
 
         ImageButton enrolleListButton = new ImageButton(R.Strings.ENROLLE_LIST, new ThemeResource("img/ic_list_white_48px.svg"));
@@ -88,6 +99,11 @@ public class AdminMainPageScreen extends CustomLayoutScreen {
         screenNavigator.openScreen(addSpecialityScreen.getUrl(), addSpecialityScreen);
     }
 
+    private void onAddEnrolleButtonClick(Button.ClickEvent clickEvent){
+        RegistrationScreen registrationScreen = new RegistrationScreen(screenNavigator, State.REGISTER_ADMIN);
+        screenNavigator.openScreen(registrationScreen.getUrl(), registrationScreen);
+    }
+
     private void onListInstitutionClick(){
         InstitutionListScreen institutionInstitutionListScreen = new InstitutionListScreen(screenNavigator);
         screenNavigator.openScreen(institutionInstitutionListScreen.getUrl(), institutionInstitutionListScreen);
@@ -111,5 +127,22 @@ public class AdminMainPageScreen extends CustomLayoutScreen {
     @Override
     public String getUrl() {
         return URL;
+    }
+
+    @Override
+    public void onGoToProfileAction() {
+        EditEnrolleProfileScreen editEnrolleProfileScreen = new EditEnrolleProfileScreen(screenNavigator, (Enrollee) screenNavigator.getAuthUser());
+        screenNavigator.openScreen(editEnrolleProfileScreen.getUrl(), editEnrolleProfileScreen);
+    }
+
+    @Override
+    public void onGoToControlAction() {
+        AdminMainPageScreen adminMainPageScreen = new AdminMainPageScreen(screenNavigator);
+        screenNavigator.openScreen(adminMainPageScreen.getUrl(), adminMainPageScreen);
+    }
+
+    @Override
+    public void onSignOutAction() {
+        screenNavigator.signOut();
     }
 }

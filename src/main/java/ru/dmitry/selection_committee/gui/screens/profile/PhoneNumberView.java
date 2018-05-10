@@ -47,4 +47,8 @@ public class PhoneNumberView extends VerticalLayout {
     public String getPhone() {
         return phone;
     }
+
+    public InputView<TextField> getPhoneNumberView() {
+        return phoneNumberView;
+    }
 }

@@ -2,6 +2,7 @@ package ru.dmitry.selection_committee.gui.screens.registration;
 
 import ru.dmitry.selection_committee.gui.mvp.BasePresenter;
 import ru.dmitry.selection_committee.server.models.Admin;
+import ru.dmitry.selection_committee.server.models.Enrollee;
 import ru.dmitry.selection_committee.server.repositories.UserRepository;
 import ru.dmitry.selection_committee.server.services.UserServices;
 import ru.dmitry.selection_committee.utils.AppTextUtils;
@@ -40,22 +41,47 @@ public class RegisterScreenPresenter extends BasePresenter<RegisterScreenView> {
     }
 
     public void register(){
-        Admin admin = new Admin();
-        admin.setLogin(login);
-        admin.setEmail(email);
-        admin.setPassword(password);
-        String id = userServices.insertUser(admin);
-        if (!AppTextUtils.isTextEmpty(id)){
-            getViewState().onSuccessRegister();
-        } else {
-            getViewState().onFailRegister();
+        if (check(false)) {
+            Enrollee enrollee = new Enrollee();
+            if (!AppTextUtils.isTextEmpty(login)) {
+                enrollee.setLogin(login);
+            }
+            enrollee.setEmail(email);
+            enrollee.setPassword(password);
+            String id = userServices.insertUser(enrollee);
+            if (!AppTextUtils.isTextEmpty(id)) {
+                enrollee.setId(id);
+                getViewState().onSuccessRegister(enrollee);
+            } else {
+                getViewState().onFailRegister();
+            }
         }
     }
 
-    private boolean check(){
-        if (AppTextUtils.isTextEmpty(login)){
-            getViewState().onLoginEmpty();
-            return false;
+    public void registerAdmin(){
+        if (check(true)){
+            Admin admin = new Admin();
+            if (!AppTextUtils.isTextEmpty(login)){
+                admin.setLogin(login);
+            }
+            admin.setEmail(email);
+            admin.setPassword(password);
+            String id = userServices.insertUser(admin);
+            if (!AppTextUtils.isTextEmpty(id)) {
+                admin.setId(id);
+                getViewState().onSuccessRegister(admin);
+            } else {
+                getViewState().onFailRegister();
+            }
+        }
+    }
+
+    private boolean check(boolean admin){
+        if (admin){
+            if (!AppTextUtils.isTextEmpty(login)){
+                getViewState().onLoginEmpty();
+                return false;
+            }
         }
         if (AppTextUtils.isTextEmpty(email)){
             getViewState().onEmailEmpty();

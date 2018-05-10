@@ -81,4 +81,9 @@ public class ListSelectView extends VerticalLayout {
     public void addLabelStyle(String name){
         label.addStyleName(name);
     }
+
+    public void select(String... select){
+        listSelect.select(select);
+    }
+
 }

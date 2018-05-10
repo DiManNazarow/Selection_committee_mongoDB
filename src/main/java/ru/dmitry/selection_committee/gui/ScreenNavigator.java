@@ -2,9 +2,13 @@ package ru.dmitry.selection_committee.gui;
 
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
+import com.vaadin.server.Page;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.UI;
+import ru.dmitry.selection_committee.gui.screens.auth.AuthorizationScreen;
 import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
 import ru.dmitry.selection_committee.gui.screens.base.Screen;
+import ru.dmitry.selection_committee.server.models.User;
 import ru.dmitry.selection_committee.server.services.*;
 
 import javax.validation.constraints.NotNull;
@@ -23,6 +27,8 @@ public class ScreenNavigator {
     private PulpitService pulpitService;
 
     private SpecialityService specialityService;
+
+    private User authUser;
 
     public interface NavigationCallback {
         void onScreenOpenListener(String url);
@@ -107,6 +113,20 @@ public class ScreenNavigator {
         } else {
             return "/";
         }
+    }
+
+    public User getAuthUser() {
+        return authUser;
+    }
+
+    public void setAuthUser(User authUser) {
+        this.authUser = authUser;
+    }
+
+    public void signOut(){
+        UI.getCurrent().close();
+        authUser = null;
+        Page.getCurrent().getJavaScript().execute("location.reload()");
     }
 
     private void throwNullNavigatorExceptionIfNecessary(){

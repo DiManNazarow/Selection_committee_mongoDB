@@ -124,4 +124,30 @@ public class InputView<I extends TextField> extends VerticalLayout implements Vi
     public void setFocusChangeListener(OnFocusChangeListener focusChangeListener) {
         this.focusChangeListener = focusChangeListener;
     }
+
+    public void setEnable(boolean isEnable){
+        inputField.setEnabled(isEnable);
+    }
+
+    public void setReadOnly(boolean isReadOnly){
+        inputField.setReadOnly(isReadOnly);
+    }
+
+    public void addText(String textToAdd){
+        String oldText = inputField.getValue();
+        String newText;
+        if (!AppTextUtils.isTextEmpty(oldText)) {
+            newText = String.format("%s; %s;", oldText, textToAdd);
+        } else {
+            newText = textToAdd;
+        }
+        inputField.setValue(newText);
+    }
+
+    public void setText(String text){
+        if (!AppTextUtils.isTextEmpty(text)) {
+            inputField.setValue(text);
+        }
+    }
+
 }

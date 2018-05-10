@@ -1,5 +1,6 @@
 package ru.dmitry.selection_committee.server.services;
 
+import ru.dmitry.selection_committee.server.models.Institution;
 import ru.dmitry.selection_committee.server.models.Pulpit;
 import ru.dmitry.selection_committee.server.models.Speciality;
 
@@ -14,6 +15,12 @@ public interface SpecialityService {
     List<String> getSpecialityNames();
 
     Speciality findByName(String name);
+
+    Speciality findByNameAndCode(String name, String code);
+
+    List<String> getSpecialityNamesWithCodeFilteredByInstitution(Institution institution);
+
+    List<String> getSpecialityNamesWithCode(String name);
 
     List<Speciality> getSpecialitiesFilteredByName(String name);
 

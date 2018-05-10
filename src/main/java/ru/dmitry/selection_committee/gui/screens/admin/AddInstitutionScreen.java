@@ -35,7 +35,7 @@ public class AddInstitutionScreen extends CustomLayoutScreen implements AddInsti
     }
 
     @Override
-    protected void addComponents() {
+    protected void setupComponents(Object object) {
 
         Label header = new Label(R.Strings.INSTITUTION);
         header.addStyleName("v-headerlabel");

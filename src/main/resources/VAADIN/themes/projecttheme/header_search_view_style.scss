@@ -4,7 +4,7 @@ $v-focus-style: none;
 	
 	#header_search_view_root {
 		width: 400px;
-		height: 50px;
+		height: 40px;
 		background-color: #0097DE;
 		border-radius: 25px;
     	border: 1px solid #0097DE;
@@ -13,7 +13,7 @@ $v-focus-style: none;
 	}
 
 	#search_field {
-		height: 48px;
+		height: 38px;
 		width: 280px;
 		padding-left: 30px;
 		background-color: #094F71;
@@ -22,7 +22,7 @@ $v-focus-style: none;
 	}
 
 	#search_icon {
-		height: 48px;
+		height: 38px;
 		width: 70px;
 		background-color: #0097DE;
 		border-radius: 0px 24px 24px 0px;
@@ -48,7 +48,7 @@ $v-focus-style: none;
 	}
 
 	.v-textfield-header_search {
-		height:48px;
+		height: 38px;
 		width: 280px;
 		background-color: #094F71;
 		color: #FFFFFF;

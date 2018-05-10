@@ -11,4 +11,6 @@ public interface SpecialityRepository extends MongoRepository<Speciality, String
 
     List<Speciality> findByNameContaining(String name);
 
+    Speciality findByNameAndCode(String name, String code);
+
 }

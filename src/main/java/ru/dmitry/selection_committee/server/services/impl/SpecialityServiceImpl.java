@@ -1,6 +1,7 @@
 package ru.dmitry.selection_committee.server.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import ru.dmitry.selection_committee.server.models.Institution;
 import ru.dmitry.selection_committee.server.models.Speciality;
 import ru.dmitry.selection_committee.server.repositories.SpecialityRepository;
 import ru.dmitry.selection_committee.server.services.SpecialityService;
@@ -34,6 +35,25 @@ public class SpecialityServiceImpl implements SpecialityService {
     @Override
     public Speciality findByName(String name) {
         return specialityRepository.findByName(name);
+    }
+
+    @Override
+    public Speciality findByNameAndCode(String name, String code) {
+        return specialityRepository.findByNameAndCode(name, code);
+    }
+
+    @Override
+    public List<String> getSpecialityNamesWithCodeFilteredByInstitution(Institution institution) {
+        List<String> names = new ArrayList<>();
+        for (Speciality speciality : getAll().stream().filter(speciality -> speciality.getPulpit().getDepartment().getInstitution().getId().equals(institution.getId())).collect(Collectors.toList())){
+            names.add(String.format("%s %s", speciality.getCode(), speciality.getName()));
+        }
+        return names;
+    }
+
+    @Override
+    public List<String> getSpecialityNamesWithCode(String name) {
+        return null;
     }
 
     @Override

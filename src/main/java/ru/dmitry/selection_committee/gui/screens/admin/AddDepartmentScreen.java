@@ -31,7 +31,7 @@ public class AddDepartmentScreen extends CustomLayoutScreen implements AddScreen
     }
 
     @Override
-    protected void addComponents() {
+    protected void setupComponents(Object object) {
 
         Label header = new Label(R.Strings.DEPARTMENT);
         header.addStyleName("v-headerlabel");

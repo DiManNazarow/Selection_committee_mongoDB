@@ -7,6 +7,7 @@ import com.vaadin.server.*;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.UI;
 import ru.dmitry.selection_committee.gui.screens.auth.AuthorizationScreen;
+import ru.dmitry.selection_committee.gui.screens.registration.AdminRegistrationScreen;
 import ru.dmitry.selection_committee.server.services.*;
 
 @SpringUI
@@ -42,7 +43,7 @@ public class VaadinUI extends UI implements ScreenNavigator.NavigationCallback {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        vaadinNavigator.navigateTo(screenNavigator.getLastScreen());
+        vaadinNavigator.navigateTo(AuthorizationScreen.URL);
     }
 
     @Override
@@ -68,5 +69,7 @@ public class VaadinUI extends UI implements ScreenNavigator.NavigationCallback {
         screenNavigator.setSpecialityService(specialityService);
         AuthorizationScreen authorizationScreen = new AuthorizationScreen(screenNavigator, userServices);
         screenNavigator.addScreen(authorizationScreen.getUrl(), authorizationScreen);
+        AdminRegistrationScreen adminRegistrationScreen = new AdminRegistrationScreen(screenNavigator);
+        screenNavigator.addScreen(adminRegistrationScreen.getUrl(), adminRegistrationScreen);
     }
 }

@@ -32,7 +32,7 @@ public class AddPulpitScreen extends CustomLayoutScreen implements AddScreenView
     }
 
     @Override
-    protected void addComponents() {
+    protected void setupComponents(Object object) {
 
         Label header = new Label(R.Strings.PULPIT);
         header.addStyleName("v-headerlabel");

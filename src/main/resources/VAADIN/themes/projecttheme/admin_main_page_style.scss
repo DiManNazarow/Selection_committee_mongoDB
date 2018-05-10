@@ -6,6 +6,10 @@
 		background: #0097DE;
 	}
 
+	#admin_header {
+		height: 10%;
+	}
+
 	#add_study {
 		width: 100%;
 		overflow-y: hidden;
@@ -44,6 +48,35 @@
 		font-size: 12px;
 		font-weight: medium;
 		color: #FFFFFF;
+	}
+
+	.v-profile_divider {
+		background: white;
+	}
+
+
+	.v-button-to_ {
+		border: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+		background: #0097DE;
+		.v-button-caption {
+			font-size: 12px;
+    		font-weight: medium;
+    		color: #FFFFFF;
+		}
+	}
+
+	.v-button-sign_out_popup {
+		border: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+		background: #EB5757;
+		.v-button-caption {
+			font-size: 12px;
+    		font-weight: medium;
+    		color: #FFFFFF;
+		}
 	}
 
 }

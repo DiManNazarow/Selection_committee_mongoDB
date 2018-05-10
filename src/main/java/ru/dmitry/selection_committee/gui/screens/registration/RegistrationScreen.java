@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
 import ru.dmitry.selection_committee.gui.screens.base.Screen;
+import ru.dmitry.selection_committee.gui.screens.profile.EnrolleProfileScreen;
+import ru.dmitry.selection_committee.gui.screens.profile.State;
 import ru.dmitry.selection_committee.gui.views.InputView;
 import ru.dmitry.selection_committee.gui.views.LoginInputView;
 import ru.dmitry.selection_committee.gui.views.PasswordInputView;
 import ru.dmitry.selection_committee.resourse.R;
+import ru.dmitry.selection_committee.server.models.Admin;
+import ru.dmitry.selection_committee.server.models.Enrollee;
 import ru.dmitry.selection_committee.server.repositories.UserRepository;
 import ru.dmitry.selection_committee.server.services.UserServices;
 
@@ -17,41 +21,45 @@ public class RegistrationScreen extends CustomLayoutScreen implements RegisterSc
 
     private final String URL = "registration";
 
-    private InputView loginInputView;
+    private InputView<TextField> loginInputView;
 
-    private InputView emailInputView;
+    private InputView<TextField> emailInputView;
 
-    private InputView passwordInputView;
+    private PasswordInputView passwordInputView;
 
-    private InputView retypePasswordInputView;
+    private PasswordInputView retypePasswordInputView;
 
     private Button registrationButton;
 
-    private RegisterScreenPresenter registerScreenPresenter;
+    protected RegisterScreenPresenter registerScreenPresenter;
 
-    private UserServices userServices;
+    private State state;
 
     @Autowired
-    public RegistrationScreen(ScreenNavigator screenNavigator, UserServices userServices) {
+    public RegistrationScreen(ScreenNavigator screenNavigator, State state) {
         super(screenNavigator, "registration_screen");
-        this.userServices = userServices;
+        this.state = state;
         setSizeFull();
         addStyleName("v-root");
-        registerScreenPresenter = new RegisterScreenPresenter(this, userServices);
+        registerScreenPresenter = new RegisterScreenPresenter(this, screenNavigator.getUserServices());
     }
 
-    protected void addComponents() {
+    @Override
+    protected void setupComponents(Object object) {
+
+        HeaderRegistrationView headerRegistrationView = new HeaderRegistrationView();
+        addComponent(headerRegistrationView, "header");
 
         Label header = new Label(R.Strings.REGISTRATION);
         header.addStyleName("v-headerlabel");
-        addComponent(header, "header");
+        addComponent(header, "header_label");
 
         Image imageLogin = new Image(null, new ThemeResource("img/ic_perm_identity_black_36px.svg"));
         imageLogin.setWidth(30, Unit.PIXELS);
         imageLogin.setHeight(30, Unit.PIXELS);
         addComponent(imageLogin, "login_icon");
 
-        loginInputView = new InputView(new TextField(), R.Strings.LOGIN);
+        loginInputView = new InputView<>(new TextField(), getLoginHint());
         loginInputView.setTextChangeListener(this::onLoginTextChanged);
         loginInputView.addInputStyle("v-textfield-register");
         addComponent(loginInputView, "login_field");
@@ -61,7 +69,7 @@ public class RegistrationScreen extends CustomLayoutScreen implements RegisterSc
         imageEmail.setHeight(25, Unit.PIXELS);
         addComponent(imageEmail, "email_icon");
 
-        emailInputView = new InputView(new TextField(), R.Strings.EMAIL);
+        emailInputView = new InputView<>(new TextField(), R.Strings.EMAIL);
         emailInputView.setTextChangeListener(this::onEmailTextChanged);
         emailInputView.addInputStyle("v-textfield-register");
         addComponent(emailInputView, "email_field");
@@ -98,8 +106,12 @@ public class RegistrationScreen extends CustomLayoutScreen implements RegisterSc
         return URL;
     }
 
-    private void onButtonRegistrationClick(Button.ClickEvent clickEvent){
+    protected void onButtonRegistrationClick(Button.ClickEvent clickEvent){
         registerScreenPresenter.register();
+    }
+
+    protected String getLoginHint(){
+        return R.Strings.LOGIN_HINT_REGISTRATION;
     }
 
     private void onLoginTextChanged(CharSequence text){
@@ -123,14 +135,19 @@ public class RegistrationScreen extends CustomLayoutScreen implements RegisterSc
     }
 
     @Override
-    public void onSuccessRegister() {
-        Notification.show("Success");
-        screenNavigator.goBack();
+    public void onSuccessRegister(Enrollee enrollee) {
+        EnrolleProfileScreen enrolleProfileScreen = new EnrolleProfileScreen(screenNavigator, state, enrollee);
+        screenNavigator.openScreen(enrolleProfileScreen.getUrl(), enrolleProfileScreen);
+    }
+
+    @Override
+    public void onSuccessRegister(Admin admin) {
+
     }
 
     @Override
     public void onFailRegister() {
-        Notification.show("Fail");
+        Notification.show("Ошибка регистрации");
     }
 
     @Override

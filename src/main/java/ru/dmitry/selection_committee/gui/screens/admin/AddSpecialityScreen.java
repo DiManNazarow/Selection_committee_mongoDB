@@ -31,7 +31,7 @@ public class AddSpecialityScreen extends CustomLayoutScreen implements AddSpecia
     }
 
     @Override
-    protected void addComponents() {
+    protected void setupComponents(Object object) {
 
         Label header = new Label(R.Strings.SPECIALITY);
         header.addStyleName("v-headerlabel");
