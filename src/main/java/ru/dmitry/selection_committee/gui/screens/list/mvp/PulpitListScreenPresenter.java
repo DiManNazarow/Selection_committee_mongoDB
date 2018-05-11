@@ -40,4 +40,9 @@ public class PulpitListScreenPresenter extends BasePresenter<ListScreenView<Pulp
         getViewState().onListReady(pulpitService.findByDepartment(departure));
     }
 
+    public void delete(Pulpit pulpit){
+        pulpitService.delete(pulpit);
+        getAllPulpit();
+    }
+
 }

@@ -49,4 +49,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     public List<Department> findByName(String name) {
         return departmentRepository.findByFullNameContainingOrShortNameContaining(name, name);
     }
+
+    @Override
+    public void delete(Department department) {
+        departmentRepository.delete(department);
+    }
 }

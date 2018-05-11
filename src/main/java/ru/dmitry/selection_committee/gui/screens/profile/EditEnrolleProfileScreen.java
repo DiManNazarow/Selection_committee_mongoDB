@@ -8,8 +8,8 @@ import ru.dmitry.selection_committee.utils.AppTextUtils;
 
 public class EditEnrolleProfileScreen extends EnrolleProfileScreen {
 
-    public EditEnrolleProfileScreen(ScreenNavigator screenNavigator, Enrollee enrollee) {
-        super(screenNavigator, State.EDIT, enrollee);
+    public EditEnrolleProfileScreen(ScreenNavigator screenNavigator, State state, Enrollee enrollee) {
+        super(screenNavigator, state, enrollee);
         fillData();
     }
 

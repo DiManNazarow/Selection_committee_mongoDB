@@ -34,4 +34,9 @@ public class DepartmentListScreenPresenter extends BasePresenter<ListScreenView<
         }
     }
 
+    public void delete(Department department){
+        departmentService.delete(department);
+        getAllDepartment();
+    }
+
 }

@@ -14,7 +14,7 @@ public class DepartmentFiltersList extends FiltersView {
     }
 
     @Override
-    protected FilterItem[] getFilters() {
+    protected FilterItem[] getFilters(Object object) {
 
         institutionFilter = new FilterItem(R.Strings.INSTITUTION);
 
@@ -29,7 +29,7 @@ public class DepartmentFiltersList extends FiltersView {
     }
 
     @Override
-    protected void clear() {
+    public void clear() {
         if (departmentFilterStateListener != null){
             departmentFilterStateListener.onDepartmentFilterClear();
         }

@@ -5,17 +5,13 @@ import com.vaadin.ui.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
-import ru.dmitry.selection_committee.gui.screens.base.Screen;
 import ru.dmitry.selection_committee.gui.screens.profile.EnrolleProfileScreen;
 import ru.dmitry.selection_committee.gui.screens.profile.State;
 import ru.dmitry.selection_committee.gui.views.InputView;
-import ru.dmitry.selection_committee.gui.views.LoginInputView;
 import ru.dmitry.selection_committee.gui.views.PasswordInputView;
 import ru.dmitry.selection_committee.resourse.R;
 import ru.dmitry.selection_committee.server.models.Admin;
 import ru.dmitry.selection_committee.server.models.Enrollee;
-import ru.dmitry.selection_committee.server.repositories.UserRepository;
-import ru.dmitry.selection_committee.server.services.UserServices;
 
 public class RegistrationScreen extends CustomLayoutScreen implements RegisterScreenView {
 

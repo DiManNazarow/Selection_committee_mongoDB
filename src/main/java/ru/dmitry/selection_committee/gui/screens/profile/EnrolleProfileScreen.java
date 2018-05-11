@@ -4,6 +4,7 @@ import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.*;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
+import ru.dmitry.selection_committee.gui.screens.list.EnrolleListScreen;
 import ru.dmitry.selection_committee.gui.screens.profile.mvp.EnrolleProfileScreenPresenter;
 import ru.dmitry.selection_committee.gui.screens.profile.mvp.EnrolleProfileScreenView;
 import ru.dmitry.selection_committee.gui.views.ListWindow;
@@ -248,7 +249,8 @@ public class EnrolleProfileScreen extends CustomLayoutScreen<State> implements S
 
     @Override
     public void onProfileSuccessEdit() {
-        screenNavigator.goBack();
+        EnrolleListScreen enrolleListScreen = new EnrolleListScreen(screenNavigator, State.ENROLLE_LIST_USER);
+        screenNavigator.openScreen(enrolleListScreen.getUrl(), enrolleListScreen);
     }
 
     @Override

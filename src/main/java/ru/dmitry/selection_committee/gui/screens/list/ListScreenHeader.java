@@ -32,6 +32,7 @@ public class ListScreenHeader extends HeaderView<User> implements HeaderSearchVi
 
     @Override
     protected Component[] getActionComponents() {
+
         headerSearchView = new HeaderSearchView(R.Strings.NAME_HINT);
         headerSearchView.setSearchIconClickListener(this);
         headerSearchView.setSearchQueryChangeListener(this);
@@ -74,6 +75,14 @@ public class ListScreenHeader extends HeaderView<User> implements HeaderSearchVi
 
     public void setUserHeaderViewActionListener(HeaderProfileView.HeaderActionListener headerActionListener){
         headerProfileView.setHeaderActionListener(headerActionListener);
+    }
+
+    public void setSearchPlaceholder(String name){
+        headerSearchView.setSearchPlaceholder(name);
+    }
+
+    public void clear(){
+        headerSearchView.clear();
     }
 
 }

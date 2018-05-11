@@ -4,10 +4,7 @@ import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
-import ru.dmitry.selection_committee.gui.screens.list.DepartmentListScreen;
-import ru.dmitry.selection_committee.gui.screens.list.InstitutionListScreen;
-import ru.dmitry.selection_committee.gui.screens.list.PulpitListScreen;
-import ru.dmitry.selection_committee.gui.screens.list.SpecialityListScreen;
+import ru.dmitry.selection_committee.gui.screens.list.*;
 import ru.dmitry.selection_committee.gui.screens.profile.EditEnrolleProfileScreen;
 import ru.dmitry.selection_committee.gui.screens.profile.State;
 import ru.dmitry.selection_committee.gui.screens.registration.RegistrationScreen;
@@ -59,6 +56,7 @@ public class AdminMainPageScreen extends CustomLayoutScreen implements UserHeade
         addComponent(addEnrolleButton, "add_enrolle");
 
         ImageButton enrolleListButton = new ImageButton(R.Strings.ENROLLE_LIST, new ThemeResource("img/ic_list_white_48px.svg"));
+        enrolleListButton.setImageButtonClickListener(this::onListEnrolleClick);
         addComponent(enrolleListButton, "enrolle_list");
 
         ImageButton universityListButton = new ImageButton(R.Strings.UNIVERSITY_LIST, new ThemeResource("img/ic_list_white_48px.svg"));
@@ -124,6 +122,11 @@ public class AdminMainPageScreen extends CustomLayoutScreen implements UserHeade
         screenNavigator.openScreen(specialityListScreen.getUrl(), specialityListScreen);
     }
 
+    private void onListEnrolleClick(){
+        EnrolleListScreen enrolleListScreen = new EnrolleListScreen(screenNavigator, State.ENROLLE_LIST_ADMIN);
+        screenNavigator.openScreen(enrolleListScreen.getUrl(), enrolleListScreen);
+    }
+
     @Override
     public String getUrl() {
         return URL;
@@ -131,7 +134,7 @@ public class AdminMainPageScreen extends CustomLayoutScreen implements UserHeade
 
     @Override
     public void onGoToProfileAction() {
-        EditEnrolleProfileScreen editEnrolleProfileScreen = new EditEnrolleProfileScreen(screenNavigator, (Enrollee) screenNavigator.getAuthUser());
+        EditEnrolleProfileScreen editEnrolleProfileScreen = new EditEnrolleProfileScreen(screenNavigator, State.EDIT_ADMIN, (Enrollee) screenNavigator.getAuthUser());
         screenNavigator.openScreen(editEnrolleProfileScreen.getUrl(), editEnrolleProfileScreen);
     }
 

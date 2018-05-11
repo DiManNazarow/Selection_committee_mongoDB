@@ -77,9 +77,7 @@ public class HeaderProfileView extends HorizontalLayout {
         image.addClickListener(new MouseEvents.ClickListener() {
             @Override
             public void click(MouseEvents.ClickEvent clickEvent) {
-                if (headerActionListener != null){
-                    headerActionListener.onGoToProfileAction();
-                }
+                popupView.setPopupVisible(true);
             }
         });
 
@@ -126,7 +124,7 @@ public class HeaderProfileView extends HorizontalLayout {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
                 if (headerActionListener != null){
-                    headerActionListener.onGoToControlAction();
+                    headerActionListener.onGoToProfileAction();
                 }
             }
         });

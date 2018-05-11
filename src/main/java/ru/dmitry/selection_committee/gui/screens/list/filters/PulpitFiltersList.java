@@ -16,7 +16,7 @@ public class PulpitFiltersList extends FiltersView {
     }
 
     @Override
-    protected FilterItem[] getFilters() {
+    protected FilterItem[] getFilters(Object object) {
         institutionFilter = new FilterItem(R.Strings.INSTITUTION);
         departmentFilter = new FilterItem(R.Strings.DEPARTMENT);
         return new FilterItem[]{institutionFilter, departmentFilter};
@@ -30,7 +30,7 @@ public class PulpitFiltersList extends FiltersView {
     }
 
     @Override
-    protected void clear() {
+    public void clear() {
         if (pulpitFilterStateListener != null){
             pulpitFilterStateListener.onPulpitFilterClear();
         }

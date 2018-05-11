@@ -18,6 +18,6 @@ public interface InstitutionService {
 
     List<Institution> filterByCity(String city);
 
-
+    void delete(Institution institution);
 
 }

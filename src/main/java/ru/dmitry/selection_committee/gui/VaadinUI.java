@@ -46,10 +46,10 @@ public class VaadinUI extends UI implements ScreenNavigator.NavigationCallback {
         vaadinNavigator.navigateTo(AuthorizationScreen.URL);
     }
 
-    @Override
-    protected void refresh(VaadinRequest request){
-        vaadinNavigator.navigateTo(screenNavigator.getLastScreen());
-    }
+//    @Override
+//    protected void refresh(VaadinRequest request){
+//        vaadinNavigator.navigateTo(screenNavigator.getLastScreen());
+//    }
 
     @Override
     public void onScreenOpenListener(String url) {
@@ -67,9 +67,9 @@ public class VaadinUI extends UI implements ScreenNavigator.NavigationCallback {
         screenNavigator.setDepartmentService(departmentService);
         screenNavigator.setPulpitService(pulpitService);
         screenNavigator.setSpecialityService(specialityService);
-        AuthorizationScreen authorizationScreen = new AuthorizationScreen(screenNavigator, userServices);
-        screenNavigator.addScreen(authorizationScreen.getUrl(), authorizationScreen);
         AdminRegistrationScreen adminRegistrationScreen = new AdminRegistrationScreen(screenNavigator);
         screenNavigator.addScreen(adminRegistrationScreen.getUrl(), adminRegistrationScreen);
+        AuthorizationScreen authorizationScreen = new AuthorizationScreen(screenNavigator, userServices);
+        screenNavigator.addScreen(authorizationScreen.getUrl(), authorizationScreen);
     }
 }

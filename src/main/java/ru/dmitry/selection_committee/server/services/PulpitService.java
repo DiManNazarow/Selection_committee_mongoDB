@@ -22,4 +22,6 @@ public interface PulpitService {
 
     List<Pulpit> findByInstitutionAndDepartment(String institution, String department);
 
+    void delete(Pulpit pulpit);
+
 }

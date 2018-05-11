@@ -38,5 +38,6 @@ public interface SpecialityService {
 
     List<Speciality> getSpecialitiesFilteredByPulpit(String pulpit);
 
+    void delete(Speciality speciality);
 
 }

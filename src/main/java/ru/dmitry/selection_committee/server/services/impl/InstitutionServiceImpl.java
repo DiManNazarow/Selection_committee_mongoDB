@@ -39,6 +39,11 @@ public class InstitutionServiceImpl implements InstitutionService {
     }
 
     @Override
+    public void delete(Institution institution) {
+        institutionRepository.delete(institution);
+    }
+
+    @Override
     public List<String> getInstitutionsNames(){
         List<String> names = new ArrayList<>();
         institutionRepository.findAll().forEach(institution -> names.add(institution.getFullName()));

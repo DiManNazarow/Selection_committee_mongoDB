@@ -8,4 +8,6 @@ public interface ListScreenView<T> extends MvpView {
 
     void onListReady(List<T> list);
 
+    void onFilterClear();
+
 }

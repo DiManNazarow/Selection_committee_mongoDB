@@ -14,7 +14,7 @@ public class InstitutionFiltersList extends FiltersView {
     }
 
     @Override
-    protected FilterItem[] getFilters() {
+    protected FilterItem[] getFilters(Object object) {
 
         cityFilter = new FilterItem(R.Strings.CITY);
         cityFilter.setFilterValueTextChangedListener(text -> {
@@ -32,7 +32,7 @@ public class InstitutionFiltersList extends FiltersView {
     }
 
     @Override
-    protected void clear() {
+    public void clear() {
         if (institutionFilterStateListener != null) {
             institutionFilterStateListener.onInstitutionFilterClear();
         }

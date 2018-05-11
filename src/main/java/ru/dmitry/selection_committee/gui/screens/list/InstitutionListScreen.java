@@ -1,5 +1,6 @@
 package ru.dmitry.selection_committee.gui.screens.list;
 
+import com.vaadin.ui.renderers.ButtonRenderer;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.list.filters.InstitutionFiltersList;
 import ru.dmitry.selection_committee.gui.screens.list.mvp.InstitutionListScreenPresenter;
@@ -28,6 +29,11 @@ public class InstitutionListScreen extends AbsListScreen<InstitutionListScreenPr
     }
 
     @Override
+    public void onItemClicked(Institution institution) {
+
+    }
+
+    @Override
     public String getUrl(){
         return URL;
     }
@@ -38,16 +44,19 @@ public class InstitutionListScreen extends AbsListScreen<InstitutionListScreenPr
     }
 
     @Override
-    protected void addGridColumn() {
+    protected void addGridColumn(Object data) {
         listGrid.addColumn(Institution::getShortName).setCaption(R.Strings.SHORT_NAME).setResizable(true);
         listGrid.addColumn(Institution::getFullName).setCaption(R.Strings.FULL_NAME).setResizable(true);
         listGrid.addColumn(Institution::getCity).setCaption(R.Strings.CITY).setResizable(true);
         listGrid.addColumn(Institution::getStreet).setCaption(R.Strings.STREET).setResizable(true);
         listGrid.addColumn(Institution::getHome).setCaption(R.Strings.HOUSE).setResizable(true);
+        listGrid.addColumn(institution -> "Удалить", new ButtonRenderer<>(rendererClickEvent -> {
+            screenPresenter.delete(rendererClickEvent.getItem());
+        }));
     }
 
     @Override
-    protected InstitutionFiltersList getFiltersView() {
+    protected InstitutionFiltersList getFiltersView(Object data) {
         InstitutionFiltersList institutionFiltersList = new InstitutionFiltersList();
         institutionFiltersList.setInstitutionFilterStateListener(new InstitutionFiltersList.OnInstitutionFilterStateListener() {
             @Override
@@ -64,7 +73,7 @@ public class InstitutionListScreen extends AbsListScreen<InstitutionListScreenPr
     }
 
     @Override
-    protected InstitutionListScreenPresenter getScreenPresenter() {
+    protected InstitutionListScreenPresenter getScreenPresenter(Object data) {
         return new InstitutionListScreenPresenter(this, screenNavigator.getInstitutionService());
     }
 }

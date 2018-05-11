@@ -1,12 +1,16 @@
 package ru.dmitry.selection_committee.server.repositories;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import ru.dmitry.selection_committee.server.models.Enrollee;
 import ru.dmitry.selection_committee.server.models.User;
 
-public interface UserRepository extends MongoRepository<User, String> {
+import java.util.List;
 
-    User findUserByEmailAndPassword(String email, String password);
-
-    User findUserByLoginAndPassword(String login, String password);
-
-}
+//public interface UserRepository extends MongoRepository<User, String> {
+//
+//    User findUserByEmailAndPassword(String email, String password);
+//
+//    User findUserByLoginAndPassword(String login, String password);
+//
+//
+//}

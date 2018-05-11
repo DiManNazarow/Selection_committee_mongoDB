@@ -1,5 +1,6 @@
 package ru.dmitry.selection_committee.gui.screens.list;
 
+import com.vaadin.ui.renderers.ButtonRenderer;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.list.filters.SpecialityFiltersList;
 import ru.dmitry.selection_committee.gui.screens.list.mvp.SpecialityListScreenPresenter;
@@ -16,15 +17,18 @@ public class SpecialityListScreen extends AbsListScreen<SpecialityListScreenPres
     }
 
     @Override
-    protected void addGridColumn() {
+    protected void addGridColumn(Object data) {
         listGrid.addColumn(Speciality::getName).setCaption(R.Strings.FULL_NAME).setResizable(true);
         listGrid.addColumn(Speciality::getCode).setCaption(R.Strings.CODE_HINT).setResizable(true);
         listGrid.addColumn(speciality -> speciality.getPulpit().getDepartment().getShortName()).setCaption(R.Strings.DEPARTMENT).setResizable(true);
         listGrid.addColumn(speciality -> speciality.getPulpit().getDepartment().getInstitution().getShortName()).setCaption(R.Strings.INSTITUTION).setResizable(true);
+        listGrid.addColumn(institution -> "Удалить", new ButtonRenderer<>(rendererClickEvent -> {
+            screenPresenter.delete(rendererClickEvent.getItem());
+        }));
     }
 
     @Override
-    protected SpecialityFiltersList getFiltersView() {
+    protected SpecialityFiltersList getFiltersView(Object data) {
         SpecialityFiltersList specialityFiltersList = new SpecialityFiltersList();
         specialityFiltersList.setSpecialityFilterStateListener(new SpecialityFiltersList.OnSpecialityFilterStateListener() {
             @Override
@@ -41,7 +45,7 @@ public class SpecialityListScreen extends AbsListScreen<SpecialityListScreenPres
     }
 
     @Override
-    protected SpecialityListScreenPresenter getScreenPresenter() {
+    protected SpecialityListScreenPresenter getScreenPresenter(Object data) {
         return new SpecialityListScreenPresenter(this, screenNavigator.getSpecialityService());
     }
 
@@ -53,6 +57,11 @@ public class SpecialityListScreen extends AbsListScreen<SpecialityListScreenPres
     @Override
     public void onSearchIconClick() {
         screenPresenter.getSpecialitiesFilteredByName(listScreenHeader.getSearchQuery());
+    }
+
+    @Override
+    public void onItemClicked(Speciality speciality) {
+
     }
 
     @Override

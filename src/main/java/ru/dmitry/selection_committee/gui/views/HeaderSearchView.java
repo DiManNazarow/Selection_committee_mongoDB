@@ -72,4 +72,13 @@ public class HeaderSearchView extends CustomLayout {
     public String getSearchQuery() {
         return searchQuery;
     }
+
+    public void setSearchPlaceholder(String text){
+        search.setPlaceholder(text);
+    }
+
+    public void clear(){
+        search.clear();
+    }
+
 }

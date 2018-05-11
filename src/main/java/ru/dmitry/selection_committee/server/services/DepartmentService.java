@@ -18,4 +18,6 @@ public interface DepartmentService {
 
     List<Department> findByName(String name);
 
+    void delete(Department department);
+
 }

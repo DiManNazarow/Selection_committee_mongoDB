@@ -3,7 +3,6 @@ package ru.dmitry.selection_committee.gui.screens.registration;
 import ru.dmitry.selection_committee.gui.mvp.BasePresenter;
 import ru.dmitry.selection_committee.server.models.Admin;
 import ru.dmitry.selection_committee.server.models.Enrollee;
-import ru.dmitry.selection_committee.server.repositories.UserRepository;
 import ru.dmitry.selection_committee.server.services.UserServices;
 import ru.dmitry.selection_committee.utils.AppTextUtils;
 
@@ -48,7 +47,7 @@ public class RegisterScreenPresenter extends BasePresenter<RegisterScreenView> {
             }
             enrollee.setEmail(email);
             enrollee.setPassword(password);
-            String id = userServices.insertUser(enrollee);
+            String id = userServices.insertEnrolle(enrollee);
             if (!AppTextUtils.isTextEmpty(id)) {
                 enrollee.setId(id);
                 getViewState().onSuccessRegister(enrollee);
@@ -66,7 +65,7 @@ public class RegisterScreenPresenter extends BasePresenter<RegisterScreenView> {
             }
             admin.setEmail(email);
             admin.setPassword(password);
-            String id = userServices.insertUser(admin);
+            String id = userServices.insertAdmin(admin);
             if (!AppTextUtils.isTextEmpty(id)) {
                 admin.setId(id);
                 getViewState().onSuccessRegister(admin);
@@ -78,7 +77,7 @@ public class RegisterScreenPresenter extends BasePresenter<RegisterScreenView> {
 
     private boolean check(boolean admin){
         if (admin){
-            if (!AppTextUtils.isTextEmpty(login)){
+            if (AppTextUtils.isTextEmpty(login)){
                 getViewState().onLoginEmpty();
                 return false;
             }

@@ -104,4 +104,9 @@ public class SpecialityServiceImpl implements SpecialityService {
     public List<Speciality> getSpecialitiesFilteredByPulpit(String pulpit) {
         return specialityRepository.findAll().stream().filter(speciality -> speciality.getPulpit().getShortName().contains(pulpit) || speciality.getPulpit().getFullName().contains(pulpit)).collect(Collectors.toList());
     }
+
+    @Override
+    public void delete(Speciality speciality) {
+        specialityRepository.delete(speciality);
+    }
 }

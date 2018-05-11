@@ -20,13 +20,13 @@ public class FilterItem extends VerticalLayout {
     }
 
     public FilterItem(String title){
-        this.title = new Label(title);
-        this.filter = new TextField();
         setSpacing(false);
-        setup();
+        setup(title);
     }
 
-    protected void setup(){
+    protected void setup(String name){
+        title = new Label(name);
+        filter = new TextField();
         title.addStyleName("v-label-filter_title");
         filter.addStyleName("v-textfield-search_filter");
         filter.addValueChangeListener((HasValue.ValueChangeListener<String>) valueChangeEvent -> {

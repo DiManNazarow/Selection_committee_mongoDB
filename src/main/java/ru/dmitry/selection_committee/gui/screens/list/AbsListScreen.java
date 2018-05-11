@@ -1,6 +1,7 @@
 package ru.dmitry.selection_committee.gui.screens.list;
 
 import com.vaadin.ui.Grid;
+import com.vaadin.ui.components.grid.ItemClickListener;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.mvp.BasePresenter;
 import ru.dmitry.selection_committee.gui.screens.admin.AdminMainPageScreen;
@@ -8,6 +9,7 @@ import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
 import ru.dmitry.selection_committee.gui.screens.list.filters.FiltersView;
 import ru.dmitry.selection_committee.gui.screens.list.mvp.ListScreenView;
 import ru.dmitry.selection_committee.gui.screens.profile.EditEnrolleProfileScreen;
+import ru.dmitry.selection_committee.gui.screens.profile.State;
 import ru.dmitry.selection_committee.gui.views.HeaderProfileView;
 import ru.dmitry.selection_committee.server.models.Enrollee;
 import ru.dmitry.selection_committee.server.models.Institution;
@@ -27,8 +29,15 @@ public abstract class AbsListScreen<Presenter extends BasePresenter, Filters ext
     public AbsListScreen(ScreenNavigator screenNavigator) {
         super(screenNavigator, "list_screen");
         setSizeFull();
-        screenPresenter = getScreenPresenter();
-        addComponents();
+        screenPresenter = getScreenPresenter(null);
+        setupComponents(null);
+    }
+
+    public AbsListScreen(ScreenNavigator screenNavigator, State state) {
+        super(screenNavigator, state, "list_screen");
+        setSizeFull();
+        screenPresenter = getScreenPresenter(state);
+        setupComponents(state);
     }
 
     @Override
@@ -55,7 +64,7 @@ public abstract class AbsListScreen<Presenter extends BasePresenter, Filters ext
         listScreenHeader.setUserHeaderViewActionListener(new HeaderProfileView.HeaderActionListener() {
             @Override
             public void onGoToProfileAction() {
-                EditEnrolleProfileScreen editEnrolleProfileScreen = new EditEnrolleProfileScreen(screenNavigator, (Enrollee)screenNavigator.getAuthUser());
+                EditEnrolleProfileScreen editEnrolleProfileScreen = new EditEnrolleProfileScreen(screenNavigator, State.EDIT, (Enrollee)screenNavigator.getAuthUser());
                 screenNavigator.openScreen(editEnrolleProfileScreen.getUrl(), editEnrolleProfileScreen);
             }
 
@@ -74,10 +83,16 @@ public abstract class AbsListScreen<Presenter extends BasePresenter, Filters ext
 
         listGrid = new Grid<>();
         listGrid.setSizeFull();
-        addGridColumn();
+        addGridColumn(object);
         addComponent(listGrid, "list_layout");
+        listGrid.addItemClickListener(new ItemClickListener<Model>() {
+            @Override
+            public void itemClick(Grid.ItemClick<Model> itemClick) {
+                onItemClicked(itemClick.getItem());
+            }
+        });
 
-        filtersListView = getFiltersView();
+        filtersListView = getFiltersView(object);
         if (filtersListView != null){
             addComponent(filtersListView, "filter_layout");
         }
@@ -85,18 +100,26 @@ public abstract class AbsListScreen<Presenter extends BasePresenter, Filters ext
     }
 
     @Override
+    public void onFilterClear() {
+        listScreenHeader.clear();
+        filtersListView.clear();
+    }
+
+    @Override
     public void onListReady(List<Model> list) {
         listGrid.setItems(list);
     }
 
-    protected abstract void addGridColumn();
+    protected abstract void addGridColumn(Object data);
 
-    protected abstract Filters getFiltersView();
+    protected abstract Filters getFiltersView(Object data);
 
-    protected abstract Presenter getScreenPresenter();
+    protected abstract Presenter getScreenPresenter(Object data);
 
     public abstract void onSearchQueryTextChanged(String text);
 
     public abstract void onSearchIconClick();
+
+    public abstract void onItemClicked(Model model);
 
 }

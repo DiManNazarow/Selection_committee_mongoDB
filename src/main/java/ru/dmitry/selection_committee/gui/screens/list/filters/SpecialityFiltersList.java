@@ -18,7 +18,7 @@ public class SpecialityFiltersList extends FiltersView {
     }
 
     @Override
-    protected FilterItem[] getFilters() {
+    protected FilterItem[] getFilters(Object object) {
         institutionFilter = new FilterItem(R.Strings.INSTITUTION);
         departmentFilter = new FilterItem(R.Strings.DEPARTMENT);
         pulpitItem = new FilterItem(R.Strings.PULPIT);
@@ -33,7 +33,7 @@ public class SpecialityFiltersList extends FiltersView {
     }
 
     @Override
-    protected void clear() {
+    public void clear() {
         if (specialityFilterStateListener != null){
             specialityFilterStateListener.onSpecialityFilterClear();
         }

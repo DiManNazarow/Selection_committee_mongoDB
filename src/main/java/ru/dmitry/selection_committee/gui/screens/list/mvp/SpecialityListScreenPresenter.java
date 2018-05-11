@@ -63,4 +63,9 @@ public class SpecialityListScreenPresenter extends BasePresenter<ListScreenView<
     private void getSpecialitiesFilteredByPulpit(String pulpit){
         getViewState().onListReady(specialityService.getSpecialitiesFilteredByPulpit(pulpit));
     }
+
+    public void delete(Speciality speciality){
+        specialityService.delete(speciality);
+    }
+
 }

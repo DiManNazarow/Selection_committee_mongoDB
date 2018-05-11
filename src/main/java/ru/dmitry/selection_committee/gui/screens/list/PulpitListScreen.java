@@ -1,5 +1,6 @@
 package ru.dmitry.selection_committee.gui.screens.list;
 
+import com.vaadin.ui.renderers.ButtonRenderer;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.list.filters.PulpitFiltersList;
 import ru.dmitry.selection_committee.gui.screens.list.mvp.PulpitListScreenPresenter;
@@ -16,15 +17,18 @@ public class PulpitListScreen extends AbsListScreen<PulpitListScreenPresenter, P
     }
 
     @Override
-    protected void addGridColumn() {
+    protected void addGridColumn(Object data) {
         listGrid.addColumn(Pulpit::getShortName).setCaption(R.Strings.SHORT_NAME).setResizable(true);
         listGrid.addColumn(Pulpit::getFullName).setCaption(R.Strings.FULL_NAME).setResizable(true);
         listGrid.addColumn(pulpit -> pulpit.getDepartment().getShortName()).setCaption(R.Strings.DEPARTMENT).setResizable(true);
         listGrid.addColumn(pulpit -> pulpit.getDepartment().getInstitution().getShortName()).setCaption(R.Strings.INSTITUTION).setResizable(true);
+        listGrid.addColumn(institution -> "Удалить", new ButtonRenderer<>(rendererClickEvent -> {
+            screenPresenter.delete(rendererClickEvent.getItem());
+        }));
     }
 
     @Override
-    protected PulpitFiltersList getFiltersView() {
+    protected PulpitFiltersList getFiltersView(Object data) {
         PulpitFiltersList pulpitFiltersList = new PulpitFiltersList();
         pulpitFiltersList.setPulpitFilterStateListener(new PulpitFiltersList.OnPulpitFilterStateListener() {
             @Override
@@ -41,7 +45,7 @@ public class PulpitListScreen extends AbsListScreen<PulpitListScreenPresenter, P
     }
 
     @Override
-    protected PulpitListScreenPresenter getScreenPresenter() {
+    protected PulpitListScreenPresenter getScreenPresenter(Object data) {
         return new PulpitListScreenPresenter(this, screenNavigator.getPulpitService());
     }
 
@@ -53,6 +57,11 @@ public class PulpitListScreen extends AbsListScreen<PulpitListScreenPresenter, P
     @Override
     public void onSearchIconClick() {
         screenPresenter.getPulpitFilteredByName(listScreenHeader.getSearchQuery());
+    }
+
+    @Override
+    public void onItemClicked(Pulpit pulpit) {
+
     }
 
     @Override

@@ -80,6 +80,8 @@ public class R {
         public static final String CITY_FILTER = "Город";
         public static final String APPLY_FILTERS = "Применить фильтры";
 
+        public static final String YEAR_OF_ENTERED = "Год поступления";
+
         public static final String CHOOSE = "Выбрать";
 
         public static class Errors {

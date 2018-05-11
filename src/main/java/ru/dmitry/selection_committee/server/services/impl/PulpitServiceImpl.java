@@ -61,4 +61,9 @@ public class PulpitServiceImpl implements PulpitService {
                         (pulpit.getDepartment().getShortName().contains(department) || pulpit.getDepartment().getFullName().contains(department))).collect(Collectors.toList());
     }
 
+    @Override
+    public void delete(Pulpit pulpit) {
+        pulpitRepository.delete(pulpit);
+    }
+
 }

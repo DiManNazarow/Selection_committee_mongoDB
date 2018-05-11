@@ -1,5 +1,6 @@
 package ru.dmitry.selection_committee.gui.screens.list;
 
+import com.vaadin.ui.renderers.ButtonRenderer;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.list.filters.DepartmentFiltersList;
 import ru.dmitry.selection_committee.gui.screens.list.mvp.DepartmentListScreenPresenter;
@@ -28,6 +29,11 @@ public class DepartmentListScreen extends AbsListScreen<DepartmentListScreenPres
     }
 
     @Override
+    public void onItemClicked(Department department) {
+
+    }
+
+    @Override
     public String getUrl() {
         return URL;
     }
@@ -38,14 +44,17 @@ public class DepartmentListScreen extends AbsListScreen<DepartmentListScreenPres
     }
 
     @Override
-    protected void addGridColumn() {
+    protected void addGridColumn(Object object) {
         listGrid.addColumn(Department::getShortName).setCaption(R.Strings.SHORT_NAME).setResizable(true);
         listGrid.addColumn(Department::getFullName).setCaption(R.Strings.FULL_NAME).setResizable(true);
         listGrid.addColumn(department -> department.getInstitution().getShortName()).setCaption(R.Strings.INSTITUTION).setResizable(true);
+        listGrid.addColumn(institution -> "Удалить", new ButtonRenderer<>(rendererClickEvent -> {
+            screenPresenter.delete(rendererClickEvent.getItem());
+        }));
     }
 
     @Override
-    protected DepartmentFiltersList getFiltersView() {
+    protected DepartmentFiltersList getFiltersView(Object object) {
         DepartmentFiltersList departmentFiltersList = new DepartmentFiltersList();
         departmentFiltersList.setDepartmentFilterStateListener(new DepartmentFiltersList.OnDepartmentFilterStateListener() {
             @Override
@@ -62,7 +71,7 @@ public class DepartmentListScreen extends AbsListScreen<DepartmentListScreenPres
     }
 
     @Override
-    protected DepartmentListScreenPresenter getScreenPresenter() {
+    protected DepartmentListScreenPresenter getScreenPresenter(Object object) {
         return new DepartmentListScreenPresenter(this, screenNavigator.getDepartmentService());
     }
 }

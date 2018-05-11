@@ -170,7 +170,7 @@ public class EnrolleProfileScreenPresenter extends BasePresenter<EnrolleProfileS
             enrollee.setSpecialities(specialities);
             enrollee.setStatus(status.getCode());
 
-            String id = userServices.insertUser(enrollee);
+            String id = userServices.insertEnrolle(enrollee);
             if (!AppTextUtils.isTextEmpty(id)) {
                 getViewState().onProfileSuccessEdit();
             } else {

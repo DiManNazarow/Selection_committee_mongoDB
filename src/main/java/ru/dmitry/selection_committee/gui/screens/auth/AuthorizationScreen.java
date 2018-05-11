@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.admin.AdminMainPageScreen;
 import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
+import ru.dmitry.selection_committee.gui.screens.list.EnrolleListScreen;
 import ru.dmitry.selection_committee.gui.screens.profile.EditEnrolleProfileScreen;
 import ru.dmitry.selection_committee.gui.screens.profile.EnrolleProfileScreen;
 import ru.dmitry.selection_committee.gui.screens.profile.State;
@@ -120,8 +121,8 @@ public class AuthorizationScreen extends CustomLayoutScreen implements AuthScree
     @Override
     public void onAuthEnrolle(Enrollee enrollee) {
         screenNavigator.setAuthUser(enrollee);
-        EditEnrolleProfileScreen enrolleProfileScreen = new EditEnrolleProfileScreen(screenNavigator, enrollee);
-        screenNavigator.openScreen(enrolleProfileScreen.getUrl(), enrolleProfileScreen);
+        EnrolleListScreen enrolleListScreen = new EnrolleListScreen(screenNavigator, State.ENROLLE_LIST_USER);
+        screenNavigator.openScreen(enrolleListScreen.getUrl(), enrolleListScreen);
     }
 
     @Override

@@ -16,12 +16,18 @@ public abstract class FiltersView extends VerticalLayout {
     private FilterItem[] filters;
 
     public FiltersView(){
-        setup();
         setMargin(false);
         setSpacing(false);
+        setup(null);
     }
 
-    private void setup(){
+    public FiltersView(Object object){
+        setMargin(false);
+        setSpacing(false);
+        setup(object);
+    }
+
+    private void setup(Object object){
         clearButton = new Button(R.Strings.CLEAR_FILTERS);
         clearButton.addStyleName("v-button-clear");
         clearButton.addClickListener((Button.ClickListener) clickEvent -> clearInternal());
@@ -38,7 +44,7 @@ public abstract class FiltersView extends VerticalLayout {
         header.setComponentAlignment(title, Alignment.MIDDLE_LEFT);
         header.setComponentAlignment(clearButton, Alignment.MIDDLE_RIGHT);
         addComponent(header);
-        filters = getFilters();
+        filters = getFilters(object);
         addComponents(filters);
         addComponent(applyButton);
         setComponentAlignment(applyButton, Alignment.MIDDLE_CENTER);
@@ -53,10 +59,10 @@ public abstract class FiltersView extends VerticalLayout {
         clear();
     }
 
-    protected abstract FilterItem[] getFilters();
+    protected abstract FilterItem[] getFilters(Object object);
 
     protected abstract void applyFilters();
 
-    protected abstract void clear();
+    public abstract void clear();
 
 }

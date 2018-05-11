@@ -1,7 +1,9 @@
 package ru.dmitry.selection_committee.server.models;
 
 import org.springframework.data.mongodb.core.mapping.DBRef;
+import ru.dmitry.selection_committee.utils.DateUtils;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -65,6 +67,8 @@ public class Enrollee extends User {
      * Статус обучающегося
      */
     private int status = Status.ENTERED.getCode();
+
+    private int enteredYear = DateUtils.getCurrentYear();
 
     public Enrollee(){
         super();
@@ -185,5 +189,13 @@ public class Enrollee extends User {
 
     public int getStatus() {
         return status;
+    }
+
+    public int getEnteredYear() {
+        return enteredYear;
+    }
+
+    public void setEnteredYear(int enteredYear) {
+        this.enteredYear = enteredYear;
     }
 }
