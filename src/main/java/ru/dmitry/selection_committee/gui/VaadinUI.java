@@ -3,6 +3,7 @@ package ru.dmitry.selection_committee.gui;
 import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.*;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.UI;
@@ -46,10 +47,10 @@ public class VaadinUI extends UI implements ScreenNavigator.NavigationCallback {
         vaadinNavigator.navigateTo(AuthorizationScreen.URL);
     }
 
-//    @Override
-//    protected void refresh(VaadinRequest request){
-//        vaadinNavigator.navigateTo(screenNavigator.getLastScreen());
-//    }
+    @Override
+    protected void refresh(VaadinRequest request){
+        screenNavigator.getLastScreen().enter(null);
+    }
 
     @Override
     public void onScreenOpenListener(String url) {

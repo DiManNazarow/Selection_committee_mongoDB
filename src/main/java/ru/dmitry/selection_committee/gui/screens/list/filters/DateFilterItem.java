@@ -32,9 +32,12 @@ public class DateFilterItem extends FilterItem {
         filter.setResolution(DateResolution.YEAR);
         title.addStyleName("v-label-filter_title");
         filter.addStyleName("v-datefield");
+        filter.setValue(LocalDate.now());
         filter.addValueChangeListener((HasValue.ValueChangeListener<LocalDate>) valueChangeEvent -> {
-            year = valueChangeEvent.getValue().getYear();
-            onFilterTextChanged(year);
+            if (valueChangeEvent != null && valueChangeEvent.getValue() != null) {
+                year = valueChangeEvent.getValue().getYear();
+                onFilterTextChanged(year);
+            }
         });
         addComponents(title, filter);
     }

@@ -30,8 +30,10 @@ public class FilterItem extends VerticalLayout {
         title.addStyleName("v-label-filter_title");
         filter.addStyleName("v-textfield-search_filter");
         filter.addValueChangeListener((HasValue.ValueChangeListener<String>) valueChangeEvent -> {
-            filterText = valueChangeEvent.getValue();
-            onFilterTextChanged(filterText);
+            if (valueChangeEvent != null && valueChangeEvent.getValue() != null) {
+                filterText = valueChangeEvent.getValue();
+                onFilterTextChanged(filterText);
+            }
         });
         addComponents(title, filter);
     }

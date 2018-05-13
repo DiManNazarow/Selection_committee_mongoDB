@@ -147,11 +147,11 @@ public class EnrolleProfileScreen extends CustomLayoutScreen<State> implements S
     public void onSpecialityFiledClickListener() {
         if (!isWindowOpen){
             ListWindow listWindow = new ListWindow("Выберите специальность", "Список специальностей");
-            listWindow.addDataToList(institution != null ? screenNavigator.getSpecialityService().getSpecialityNamesWithCodeFilteredByInstitution(institution) : screenNavigator.getSpecialityService().getSpecialityNames());
+            listWindow.addDataToList(institution != null ? screenNavigator.getSpecialityService().getSpecialityNamesWithCodeFilteredByInstitution(institution) : screenNavigator.getSpecialityService().getSpecialityNamesWithCode());
             listWindow.setListItemSelectListener(new ListWindow.OnListItemSelectListener() {
                 @Override
                 public void onListItemSelected(String name) {
-                    Speciality speciality = screenNavigator.getSpecialityService().findByNameAndCode(name.split("\\s+")[1], name.split("\\s+")[0]);
+                    Speciality speciality = screenNavigator.getSpecialityService().findByCode(name.split("\\s+")[0]);
                     if (speciality != null){
                         specialities.add(speciality);
                         studyInfoView.addSpecialityText(String.format("%s %s", speciality.getCode(), speciality.getName()));

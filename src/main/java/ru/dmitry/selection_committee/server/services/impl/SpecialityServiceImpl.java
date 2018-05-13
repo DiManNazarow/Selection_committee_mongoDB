@@ -38,8 +38,8 @@ public class SpecialityServiceImpl implements SpecialityService {
     }
 
     @Override
-    public Speciality findByNameAndCode(String name, String code) {
-        return specialityRepository.findByNameAndCode(name, code);
+    public Speciality findByCode(String code) {
+        return specialityRepository.findByCode(code);
     }
 
     @Override
@@ -52,8 +52,12 @@ public class SpecialityServiceImpl implements SpecialityService {
     }
 
     @Override
-    public List<String> getSpecialityNamesWithCode(String name) {
-        return null;
+    public List<String> getSpecialityNamesWithCode() {
+        List<String> names = new ArrayList<>();
+        for (Speciality speciality : specialityRepository.findAll()){
+            names.add(String.format("%s %s", speciality.getCode(), speciality.getName()));
+        }
+        return names;
     }
 
     @Override

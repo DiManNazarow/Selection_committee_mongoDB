@@ -34,6 +34,9 @@ public class SpecialityFiltersList extends FiltersView {
 
     @Override
     public void clear() {
+        institutionFilter.clear();
+        departmentFilter.clear();
+        pulpitItem.clear();
         if (specialityFilterStateListener != null){
             specialityFilterStateListener.onSpecialityFilterClear();
         }

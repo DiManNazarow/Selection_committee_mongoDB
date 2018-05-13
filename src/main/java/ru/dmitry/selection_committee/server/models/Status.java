@@ -6,7 +6,7 @@ import java.util.List;
 
 public enum Status {
 
-    ENTERED(0, "Поступает"), STUDYING(1, "Обучается"), DEDUCTED(2, "Отчислен"), FINISHED(3, "Закончил");
+    ENTERED(0, "Поступает"), IN_FIRST_PART(1, "В первой волне"), IN_SECOND_PART(2, "Во второй волне"), STUDYING(3, "Обучается"), DEDUCTED(4, "Отчислен"), FINISHED(5, "Закончил");
 
     private int code;
 

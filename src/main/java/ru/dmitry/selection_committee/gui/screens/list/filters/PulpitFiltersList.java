@@ -31,6 +31,8 @@ public class PulpitFiltersList extends FiltersView {
 
     @Override
     public void clear() {
+        institutionFilter.clear();
+        departmentFilter.clear();
         if (pulpitFilterStateListener != null){
             pulpitFilterStateListener.onPulpitFilterClear();
         }

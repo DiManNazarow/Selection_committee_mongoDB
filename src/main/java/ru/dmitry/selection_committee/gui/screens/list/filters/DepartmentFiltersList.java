@@ -30,6 +30,7 @@ public class DepartmentFiltersList extends FiltersView {
 
     @Override
     public void clear() {
+        institutionFilter.clear();
         if (departmentFilterStateListener != null){
             departmentFilterStateListener.onDepartmentFilterClear();
         }

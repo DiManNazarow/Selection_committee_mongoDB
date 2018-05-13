@@ -16,11 +16,11 @@ public interface SpecialityService {
 
     Speciality findByName(String name);
 
-    Speciality findByNameAndCode(String name, String code);
+    Speciality findByCode(String code);
 
     List<String> getSpecialityNamesWithCodeFilteredByInstitution(Institution institution);
 
-    List<String> getSpecialityNamesWithCode(String name);
+    List<String> getSpecialityNamesWithCode();
 
     List<Speciality> getSpecialitiesFilteredByName(String name);
 

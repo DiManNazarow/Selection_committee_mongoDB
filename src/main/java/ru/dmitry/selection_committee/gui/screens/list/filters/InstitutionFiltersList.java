@@ -33,6 +33,7 @@ public class InstitutionFiltersList extends FiltersView {
 
     @Override
     public void clear() {
+        cityFilter.clear();
         if (institutionFilterStateListener != null) {
             institutionFilterStateListener.onInstitutionFilterClear();
         }

@@ -43,6 +43,9 @@ public class EnrolleFiltersList extends FiltersView {
 
     @Override
     public void clear() {
+        institutionFilter.clear();
+        specialityFilter.clear();
+        yearOfEntered.clear();
         if (enrolleFiltersStateListener != null){
             enrolleFiltersStateListener.onEnrolleFilterClear();
         }

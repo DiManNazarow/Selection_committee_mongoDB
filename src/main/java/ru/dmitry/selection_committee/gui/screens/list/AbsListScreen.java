@@ -1,5 +1,6 @@
 package ru.dmitry.selection_committee.gui.screens.list;
 
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.components.grid.ItemClickListener;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
@@ -107,7 +108,9 @@ public abstract class AbsListScreen<Presenter extends BasePresenter, Filters ext
 
     @Override
     public void onListReady(List<Model> list) {
-        listGrid.setItems(list);
+        if (list != null) {
+            listGrid.setItems(list);
+        }
     }
 
     protected abstract void addGridColumn(Object data);

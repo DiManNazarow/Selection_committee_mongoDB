@@ -33,13 +33,13 @@ public class EditEnrolleProfileScreen extends EnrolleProfileScreen {
         studyInfoView.getAttestatNumber().setText(getEnrolle().getAttestatNumber());
         studyInfoView.getSchoolName().setText(getEnrolle().getSchoolName());
 
-        for (Speciality speciality : getEnrolle().getSpecialities()){
-            studyInfoView.getSpecialities().addText(AppTextUtils.getSpecialityNameWithCode(speciality));
+        if (getEnrolle().getSpecialities() != null) {
+            for (Speciality speciality : getEnrolle().getSpecialities()) {
+                studyInfoView.getSpecialities().addText(AppTextUtils.getSpecialityNameWithCode(speciality));
+            }
+            enrolleProfileScreenPresenter.setSpecialities(getEnrolle().getSpecialities());
+            studyInfoView.getInstitution().setText(getEnrolle().getSpecialities().get(0).getPulpit().getDepartment().getInstitution().getShortName());
         }
-
-        enrolleProfileScreenPresenter.setSpecialities(getEnrolle().getSpecialities());
-
-        studyInfoView.getInstitution().setText(getEnrolle().getSpecialities().get(0).getPulpit().getDepartment().getInstitution().getShortName());
 
         studyInfoView.getStatus().select(Status.getByCode(getEnrolle().getStatus()).getName());
 

@@ -1,5 +1,6 @@
 package ru.dmitry.selection_committee.gui.screens.list;
 
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.renderers.ButtonRenderer;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.list.filters.SpecialityFiltersList;
@@ -10,6 +11,8 @@ import ru.dmitry.selection_committee.server.models.Speciality;
 public class SpecialityListScreen extends AbsListScreen<SpecialityListScreenPresenter, SpecialityFiltersList, Speciality> {
 
     private final String URL = "speciality_list";
+
+    private SpecialityFiltersList specialityFiltersList;
 
     public SpecialityListScreen(ScreenNavigator screenNavigator) {
         super(screenNavigator);
@@ -29,7 +32,7 @@ public class SpecialityListScreen extends AbsListScreen<SpecialityListScreenPres
 
     @Override
     protected SpecialityFiltersList getFiltersView(Object data) {
-        SpecialityFiltersList specialityFiltersList = new SpecialityFiltersList();
+        specialityFiltersList = new SpecialityFiltersList();
         specialityFiltersList.setSpecialityFilterStateListener(new SpecialityFiltersList.OnSpecialityFilterStateListener() {
             @Override
             public void onSpecialityFilterApply(String institution, String department, String pulpit) {
@@ -68,4 +71,12 @@ public class SpecialityListScreen extends AbsListScreen<SpecialityListScreenPres
     public String getUrl() {
         return URL;
     }
+
+    @Override
+    public void enter(ViewChangeListener.ViewChangeEvent event) {
+        if (event == null){
+            specialityFiltersList.clear();
+        }
+    }
+
 }

@@ -8,6 +8,7 @@ import com.vaadin.ui.VerticalLayout;
 import org.vaadin.inputmask.InputMask;
 import org.vaadin.inputmask.client.Alias;
 import ru.dmitry.selection_committee.resourse.R;
+import ru.dmitry.selection_committee.utils.AppTextUtils;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -75,8 +76,10 @@ public class DateBirthPickerView extends VerticalLayout {
     }
 
     public void setDate(String date){
-        dateField.setValue(LocalDate.parse(date, formatter));
-        this.date = LocalDate.parse(date, formatter).format(formatter);
+        if (!AppTextUtils.isTextEmpty(date)) {
+            dateField.setValue(LocalDate.parse(date, formatter));
+            this.date = LocalDate.parse(date, formatter).format(formatter);
+        }
     }
 
 }

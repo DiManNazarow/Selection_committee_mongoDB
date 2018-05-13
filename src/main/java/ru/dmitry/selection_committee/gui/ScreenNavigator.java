@@ -8,7 +8,7 @@ import ru.dmitry.selection_committee.server.models.User;
 import ru.dmitry.selection_committee.server.services.*;
 
 import javax.validation.constraints.NotNull;
-import java.util.TreeMap;
+import java.util.*;
 
 public class ScreenNavigator {
 
@@ -29,7 +29,7 @@ public class ScreenNavigator {
         void onBackPressed();
     }
 
-    private TreeMap<String, View> screens;
+    private LinkedHashMap<String, View> screens;
 
     private NavigationCallback navigationCallback;
 
@@ -38,7 +38,7 @@ public class ScreenNavigator {
     public ScreenNavigator(@NotNull NavigationCallback navigationCallback, @NotNull Navigator vaadinNavigator){
         this.navigationCallback = navigationCallback;
         this.vaadinNavigator = vaadinNavigator;
-        screens = new TreeMap<>();
+        screens = new LinkedHashMap<>();
     }
 
     public void openScreen(String url, View screen) {
@@ -52,6 +52,10 @@ public class ScreenNavigator {
     public void goBack(){
         throwNullNavigatorExceptionIfNecessary();
         navigationCallback.onBackPressed();
+    }
+
+    public void refreshView(){
+
     }
 
     public UserServices getUserServices() {
@@ -101,11 +105,12 @@ public class ScreenNavigator {
         }
     }
 
-    public String getLastScreen(){
+    public View getLastScreen(){
         if (!screens.isEmpty()){
-            return screens.lastEntry().getKey();
+            List<Map.Entry<String, View>> entryList = new ArrayList<>(screens.entrySet());
+            return entryList.get(entryList.size() - 1).getValue();
         } else {
-            return "/";
+            return null;
         }
     }
 

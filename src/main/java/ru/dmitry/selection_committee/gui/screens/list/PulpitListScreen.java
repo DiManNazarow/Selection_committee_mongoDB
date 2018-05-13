@@ -1,5 +1,6 @@
 package ru.dmitry.selection_committee.gui.screens.list;
 
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.renderers.ButtonRenderer;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.list.filters.PulpitFiltersList;
@@ -10,6 +11,8 @@ import ru.dmitry.selection_committee.server.models.Pulpit;
 public class PulpitListScreen extends AbsListScreen<PulpitListScreenPresenter, PulpitFiltersList, Pulpit> {
 
     private final String URL = "pulpit_list";
+
+    private PulpitFiltersList pulpitFiltersList;
 
     public PulpitListScreen(ScreenNavigator screenNavigator) {
         super(screenNavigator);
@@ -29,7 +32,7 @@ public class PulpitListScreen extends AbsListScreen<PulpitListScreenPresenter, P
 
     @Override
     protected PulpitFiltersList getFiltersView(Object data) {
-        PulpitFiltersList pulpitFiltersList = new PulpitFiltersList();
+        pulpitFiltersList = new PulpitFiltersList();
         pulpitFiltersList.setPulpitFilterStateListener(new PulpitFiltersList.OnPulpitFilterStateListener() {
             @Override
             public void onPulpitFilterApply(String institution, String department) {
@@ -68,4 +71,12 @@ public class PulpitListScreen extends AbsListScreen<PulpitListScreenPresenter, P
     public String getUrl() {
         return URL;
     }
+
+    @Override
+    public void enter(ViewChangeListener.ViewChangeEvent event) {
+        if (event == null){
+            pulpitFiltersList.clear();
+        }
+    }
+
 }

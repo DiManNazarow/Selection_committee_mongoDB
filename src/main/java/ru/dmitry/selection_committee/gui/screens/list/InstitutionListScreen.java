@@ -1,5 +1,6 @@
 package ru.dmitry.selection_committee.gui.screens.list;
 
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.renderers.ButtonRenderer;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.list.filters.InstitutionFiltersList;
@@ -12,6 +13,8 @@ import java.util.List;
 public class InstitutionListScreen extends AbsListScreen<InstitutionListScreenPresenter, InstitutionFiltersList, Institution> {
 
     private final String URL = "institution_list";
+
+    private InstitutionFiltersList institutionFiltersList;
 
     public InstitutionListScreen(ScreenNavigator screenNavigator){
         super(screenNavigator);
@@ -57,7 +60,7 @@ public class InstitutionListScreen extends AbsListScreen<InstitutionListScreenPr
 
     @Override
     protected InstitutionFiltersList getFiltersView(Object data) {
-        InstitutionFiltersList institutionFiltersList = new InstitutionFiltersList();
+        institutionFiltersList = new InstitutionFiltersList();
         institutionFiltersList.setInstitutionFilterStateListener(new InstitutionFiltersList.OnInstitutionFilterStateListener() {
             @Override
             public void onInstitutionFilterApply(String city) {
@@ -76,4 +79,12 @@ public class InstitutionListScreen extends AbsListScreen<InstitutionListScreenPr
     protected InstitutionListScreenPresenter getScreenPresenter(Object data) {
         return new InstitutionListScreenPresenter(this, screenNavigator.getInstitutionService());
     }
+
+    @Override
+    public void enter(ViewChangeListener.ViewChangeEvent event) {
+        if (event == null){
+            institutionFiltersList.clear();
+        }
+    }
+
 }

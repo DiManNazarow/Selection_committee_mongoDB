@@ -1,5 +1,6 @@
 package ru.dmitry.selection_committee.gui.screens.list;
 
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.renderers.ButtonRenderer;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.list.filters.EnrolleFiltersList;
@@ -10,6 +11,7 @@ import ru.dmitry.selection_committee.resourse.R;
 import ru.dmitry.selection_committee.server.models.Admin;
 import ru.dmitry.selection_committee.server.models.Enrollee;
 import ru.dmitry.selection_committee.server.models.Role;
+import ru.dmitry.selection_committee.server.models.Status;
 import ru.dmitry.selection_committee.utils.AppTextUtils;
 import ru.dmitry.selection_committee.utils.DateUtils;
 
@@ -39,7 +41,8 @@ public class EnrolleListScreen extends AbsListScreen<EnrolleListScreenPresenter,
         listGrid.addColumn(Enrollee::getSecondName).setCaption(R.Strings.SECOND_NAME).setResizable(true);
         listGrid.addColumn(Enrollee::getPatronymic).setCaption(R.Strings.PATRONYMIC).setResizable(true);
         listGrid.addColumn(AppTextUtils::getSpecialityNames).setCaption(R.Strings.SPECIALITY).setResizable(true);
-        listGrid.addColumn(enrollee -> enrollee.getSpecialities().get(0).getPulpit().getDepartment().getInstitution().getShortName()).setCaption(R.Strings.INSTITUTION).setResizable(true);
+        listGrid.addColumn(enrollee -> enrollee.getSpecialities() != null ? enrollee.getSpecialities().get(0).getPulpit().getDepartment().getInstitution().getShortName() : "неизвестно").setCaption(R.Strings.INSTITUTION).setResizable(true);
+        listGrid.addColumn(enrollee -> Status.getByCode(enrollee.getStatus()).getName()).setCaption(R.Strings.STATUS).setResizable(true);
         if (screenNavigator.getAuthUser().getRole() == Role.ADMIN.getRoleCode()) {
             listGrid.addColumn(institution -> "Удалить", new ButtonRenderer<>(rendererClickEvent -> {
                 screenPresenter.delete(rendererClickEvent.getItem());
@@ -97,4 +100,12 @@ public class EnrolleListScreen extends AbsListScreen<EnrolleListScreenPresenter,
     public String getUrl() {
         return URL;
     }
+
+    @Override
+    public void enter(ViewChangeListener.ViewChangeEvent event) {
+        if (event == null){
+            enrolleFiltersList.clear();
+        }
+    }
+
 }

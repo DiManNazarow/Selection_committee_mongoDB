@@ -1,5 +1,6 @@
 package ru.dmitry.selection_committee.gui.screens.list;
 
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.renderers.ButtonRenderer;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
 import ru.dmitry.selection_committee.gui.screens.list.filters.DepartmentFiltersList;
@@ -12,6 +13,8 @@ import java.util.List;
 public class DepartmentListScreen extends AbsListScreen<DepartmentListScreenPresenter, DepartmentFiltersList, Department> {
 
     private final String URL = "department_list";
+
+    private DepartmentFiltersList departmentFiltersList;
 
     public DepartmentListScreen(ScreenNavigator screenNavigator) {
         super(screenNavigator);
@@ -55,7 +58,7 @@ public class DepartmentListScreen extends AbsListScreen<DepartmentListScreenPres
 
     @Override
     protected DepartmentFiltersList getFiltersView(Object object) {
-        DepartmentFiltersList departmentFiltersList = new DepartmentFiltersList();
+        departmentFiltersList = new DepartmentFiltersList();
         departmentFiltersList.setDepartmentFilterStateListener(new DepartmentFiltersList.OnDepartmentFilterStateListener() {
             @Override
             public void onDepartmentFilterApply(String institution) {
@@ -74,4 +77,11 @@ public class DepartmentListScreen extends AbsListScreen<DepartmentListScreenPres
     protected DepartmentListScreenPresenter getScreenPresenter(Object object) {
         return new DepartmentListScreenPresenter(this, screenNavigator.getDepartmentService());
     }
+
+    public void enter(ViewChangeListener.ViewChangeEvent event) {
+        if (event == null){
+            departmentFiltersList.clear();
+        }
+    }
+
 }
