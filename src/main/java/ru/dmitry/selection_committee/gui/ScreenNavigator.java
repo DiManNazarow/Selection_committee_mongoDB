@@ -3,17 +3,11 @@ package ru.dmitry.selection_committee.gui;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.server.Page;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.UI;
-import ru.dmitry.selection_committee.gui.screens.auth.AuthorizationScreen;
-import ru.dmitry.selection_committee.gui.screens.base.CustomLayoutScreen;
-import ru.dmitry.selection_committee.gui.screens.base.Screen;
 import ru.dmitry.selection_committee.server.models.User;
 import ru.dmitry.selection_committee.server.services.*;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.TreeMap;
 
 public class ScreenNavigator {
