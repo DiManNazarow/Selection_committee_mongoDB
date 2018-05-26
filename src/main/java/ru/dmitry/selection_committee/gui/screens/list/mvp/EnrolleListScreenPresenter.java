@@ -5,7 +5,6 @@ import ru.dmitry.selection_committee.server.models.Enrollee;
 import ru.dmitry.selection_committee.server.models.Speciality;
 import ru.dmitry.selection_committee.server.services.UserServices;
 import ru.dmitry.selection_committee.utils.AppTextUtils;
-import ru.dmitry.selection_committee.utils.DateUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,7 @@ public class EnrolleListScreenPresenter extends BasePresenter<ListScreenView<Enr
     }
 
     public void getEnrolleFilteredByName(String name){
-        getViewState().onListReady(userServices.getEnrolleByName(name));
+        getViewState().onListReady(userServices.getEnrollesByName(name));
     }
 
     public void filter(String institution, String speciality, int year){

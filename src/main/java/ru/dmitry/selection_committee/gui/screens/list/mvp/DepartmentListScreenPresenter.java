@@ -5,6 +5,9 @@ import ru.dmitry.selection_committee.server.models.Department;
 import ru.dmitry.selection_committee.server.services.DepartmentService;
 import ru.dmitry.selection_committee.utils.AppTextUtils;
 
+/**
+ * Класс представителя (презентера) экрана списка факультетов
+ */
 public class DepartmentListScreenPresenter extends BasePresenter<ListScreenView<Department>> {
 
     private DepartmentService departmentService;

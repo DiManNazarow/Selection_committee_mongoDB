@@ -1,6 +1,5 @@
 package ru.dmitry.selection_committee.gui.views;
 
-import com.vaadin.event.ContextClickEvent;
 import com.vaadin.event.FieldEvents;
 import com.vaadin.navigator.View;
 import com.vaadin.ui.Label;
@@ -9,6 +8,10 @@ import com.vaadin.ui.VerticalLayout;
 import ru.dmitry.selection_committee.resourse.R;
 import ru.dmitry.selection_committee.utils.AppTextUtils;
 
+/**
+ * Класс элемента для ввода текста
+ * @param <I> тип текстового поля для вода (поле пароля, поля номера телефона и т.д)
+ */
 public class InputView<I extends TextField> extends VerticalLayout implements View {
 
     private final String EMPTY_FIELD_ERROR = R.Strings.Errors.EMPTY_FIELD;

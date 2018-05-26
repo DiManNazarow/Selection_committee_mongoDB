@@ -7,10 +7,11 @@ import ru.dmitry.selection_committee.server.services.DepartmentService;
 import ru.dmitry.selection_committee.server.services.InstitutionService;
 import ru.dmitry.selection_committee.utils.AppTextUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
+/**
+ * Класс представителя (презентера) экрана добавления факультета
+ */
 public class AddDepartmentScreenPresenter extends BasePresenter<AddScreenView> {
 
     private String shortName;

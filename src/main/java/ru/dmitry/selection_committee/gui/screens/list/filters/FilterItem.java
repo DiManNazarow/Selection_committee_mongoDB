@@ -5,6 +5,9 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
+/**
+ * Класс элемента фильтра (поле ввода и подпись фильтра)
+ */
 public class FilterItem extends VerticalLayout {
 
     private Label title;

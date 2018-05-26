@@ -1,5 +1,8 @@
 package ru.dmitry.selection_committee.server.models;
 
+/**
+ * Перечисление ролей пользователя
+ */
 public enum  Role {
 
     ENROLLE(1), ADMIN(0);

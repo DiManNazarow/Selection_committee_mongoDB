@@ -8,8 +8,9 @@ import ru.dmitry.selection_committee.gui.screens.list.mvp.DepartmentListScreenPr
 import ru.dmitry.selection_committee.resourse.R;
 import ru.dmitry.selection_committee.server.models.Department;
 
-import java.util.List;
-
+/**
+ * Класс экрана списка факультетов
+ */
 public class DepartmentListScreen extends AbsListScreen<DepartmentListScreenPresenter, DepartmentFiltersList, Department> {
 
     private final String URL = "department_list";
@@ -39,11 +40,6 @@ public class DepartmentListScreen extends AbsListScreen<DepartmentListScreenPres
     @Override
     public String getUrl() {
         return URL;
-    }
-
-    @Override
-    public void onListReady(List<Department> list) {
-        listGrid.setItems(list);
     }
 
     @Override

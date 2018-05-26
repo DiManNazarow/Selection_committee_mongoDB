@@ -6,6 +6,9 @@ import ru.dmitry.selection_committee.server.models.User;
 
 import java.util.List;
 
+/**
+ * Интерфейс, содержащий методы для работы с записями таблицы «Администратор» и «Абитуриент»
+ */
 public interface UserServices {
 
     User findUser(String searchValue, String password);
@@ -18,7 +21,7 @@ public interface UserServices {
 
     List<Enrollee> getAllEnrolle();
 
-    List<Enrollee> getEnrolleByName(String name);
+    List<Enrollee> getEnrollesByName(String name);
 
     void deleteEnrolle(Enrollee enrollee);
 

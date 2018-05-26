@@ -3,8 +3,9 @@ package ru.dmitry.selection_committee.gui.screens.list.filters;
 import com.vaadin.ui.*;
 import ru.dmitry.selection_committee.resourse.R;
 
-import java.util.List;
-
+/**
+ * Базовый абстрактный класс списка фильтров экран списка
+ */
 public abstract class FiltersView extends VerticalLayout {
 
     private Button clearButton;

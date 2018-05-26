@@ -3,7 +3,6 @@ package ru.dmitry.selection_committee.gui;
 import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
-import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.*;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.UI;
@@ -11,6 +10,9 @@ import ru.dmitry.selection_committee.gui.screens.auth.AuthorizationScreen;
 import ru.dmitry.selection_committee.gui.screens.registration.AdminRegistrationScreen;
 import ru.dmitry.selection_committee.server.services.*;
 
+/**
+ * Галавный класс фреймворка Vaadin
+ */
 @SpringUI
 @Theme("projecttheme")
 @PreserveOnRefresh
@@ -53,7 +55,7 @@ public class VaadinUI extends UI implements ScreenNavigator.NavigationCallback {
     }
 
     @Override
-    public void onScreenOpenListener(String url) {
+    public void onScreenOpen(String url) {
         vaadinNavigator.navigateTo(url);
     }
 

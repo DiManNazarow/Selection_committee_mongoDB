@@ -10,6 +10,9 @@ import ru.dmitry.selection_committee.server.services.*;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 
+/**
+ * Класс для навигации между экранами
+ */
 public class ScreenNavigator {
 
     private UserServices userServices;
@@ -25,7 +28,7 @@ public class ScreenNavigator {
     private User authUser;
 
     public interface NavigationCallback {
-        void onScreenOpenListener(String url);
+        void onScreenOpen(String url);
         void onBackPressed();
     }
 
@@ -46,16 +49,15 @@ public class ScreenNavigator {
         if (!screens.containsKey(url)){
             screens.put(url, screen);
             vaadinNavigator.addView(url, screen);
+        } else {
+            vaadinNavigator.removeView(url);
+            vaadinNavigator.addView(url, screen);
         }
-        navigationCallback.onScreenOpenListener(url);
+        navigationCallback.onScreenOpen(url);
     }
     public void goBack(){
         throwNullNavigatorExceptionIfNecessary();
         navigationCallback.onBackPressed();
-    }
-
-    public void refreshView(){
-
     }
 
     public UserServices getUserServices() {

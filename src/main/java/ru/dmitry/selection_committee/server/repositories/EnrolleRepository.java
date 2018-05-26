@@ -6,6 +6,9 @@ import ru.dmitry.selection_committee.server.models.User;
 
 import java.util.List;
 
+/**
+ * Интерфейс для взаимодействия с документом "Абитуриент" в БД
+ */
 public interface EnrolleRepository extends MongoRepository<Enrollee, String> {
 
     User findUserByEmailAndPassword(String email, String password);

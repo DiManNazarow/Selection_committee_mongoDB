@@ -1,6 +1,5 @@
 package ru.dmitry.selection_committee.gui.screens.list;
 
-import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.components.grid.ItemClickListener;
 import ru.dmitry.selection_committee.gui.ScreenNavigator;
@@ -13,10 +12,15 @@ import ru.dmitry.selection_committee.gui.screens.profile.EditEnrolleProfileScree
 import ru.dmitry.selection_committee.gui.screens.profile.State;
 import ru.dmitry.selection_committee.gui.views.HeaderProfileView;
 import ru.dmitry.selection_committee.server.models.Enrollee;
-import ru.dmitry.selection_committee.server.models.Institution;
 
 import java.util.List;
 
+/**
+ * Базовый абстрактный класс экран списка
+ * @param <Presenter> представитель (презентер) экрана
+ * @param <Filters> элемент со списком фильтров
+ * @param <Model> модель данных, которая хранит данные элемента списка
+ */
 public abstract class AbsListScreen<Presenter extends BasePresenter, Filters extends FiltersView, Model> extends CustomLayoutScreen implements ListScreenView<Model> {
 
     protected ListScreenHeader listScreenHeader;

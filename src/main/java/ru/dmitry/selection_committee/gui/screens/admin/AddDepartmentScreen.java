@@ -10,8 +10,9 @@ import ru.dmitry.selection_committee.gui.views.ListSelectView;
 import ru.dmitry.selection_committee.resourse.R;
 import ru.dmitry.selection_committee.server.models.Institution;
 
-import java.util.Set;
-
+/**
+ * Класс экрана добавления факультета
+ */
 public class AddDepartmentScreen extends CustomLayoutScreen implements AddScreenView {
 
     private final String URL = "add_department";

@@ -9,10 +9,11 @@ import ru.dmitry.selection_committee.server.repositories.EnrolleRepository;
 import ru.dmitry.selection_committee.server.services.UserServices;
 import ru.dmitry.selection_committee.utils.AppTextUtils;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс, реализующий методы интерфейса для работы с записями таблицы «Администратор» и «Абитуриент»
+ */
 public class UserServicesImpl implements UserServices {
 
     private final String EMAIL_CHAR = "@";
@@ -64,7 +65,7 @@ public class UserServicesImpl implements UserServices {
     }
 
     @Override
-    public List<Enrollee> getEnrolleByName(String name) {
+    public List<Enrollee> getEnrollesByName(String name) {
         return enrolleRepository.findByFirstNameContainingOrSecondNameContainingOrPatronymicContaining(name, name, name);
     }
 

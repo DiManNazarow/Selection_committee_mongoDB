@@ -3,7 +3,6 @@ package ru.dmitry.selection_committee.server.models;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import ru.dmitry.selection_committee.utils.DateUtils;
 
-import java.util.Calendar;
 import java.util.List;
 
 /**

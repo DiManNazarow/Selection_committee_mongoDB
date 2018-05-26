@@ -2,6 +2,9 @@ package ru.dmitry.selection_committee.gui.screens.list.filters;
 
 import ru.dmitry.selection_committee.resourse.R;
 
+/**
+ * Класс списка фильтров экрана списка факультетов
+ */
 public class DepartmentFiltersList extends FiltersView {
 
     private FilterItem institutionFilter;
@@ -15,9 +18,7 @@ public class DepartmentFiltersList extends FiltersView {
 
     @Override
     protected FilterItem[] getFilters(Object object) {
-
         institutionFilter = new FilterItem(R.Strings.INSTITUTION);
-
         return new FilterItem[]{institutionFilter};
     }
 
